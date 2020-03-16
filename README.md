@@ -15,8 +15,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
         - You will also see any lint errors in the console.
 
 - #### To get backend up and running:
-    - change into the backend directory: `cd backend`
-    - activate the virtual python3 environment:
-        - MacOS/Linux: `source env/bin/activate`
-        - Windows: `.\env\Scripts\activate`
-    - In order to close the (activated) python3 environment: `deactivate`
+  - change into the backend directory: `cd backend`
+  - install virtual environment manager:
+    - MacOs/Linux: `python3 -m pip install --user virtualenv`
+    - Windows: `py -m pip install --user virtualenv`
+  - create virtual environment:
+    - MacOs/Linux: `python3 -m venv env`
+    - Windows: `py -m venv env`
+  - activate the virtual python3 environment:
+    - MacOS/Linux: `source env/bin/activate`
+    - Windows: `.\env\Scripts\activate`
+  - install dependencies: `pip3 install -r requirements.txt`
+  - in order to close the (activated) python3 environment: `deactivate`
+  - if nothing works: ![visit](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
