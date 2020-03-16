@@ -1,6 +1,5 @@
-import FuseSplashScreen from "@fuse/core/FuseSplashScreen";
 import * as userActions from "app/auth/store/actions";
-import firebaseService from "app/services/firebaseService";
+import SplashScreen from "app/main/Lantic/SplashScreen/SplashScreen";
 import * as Actions from "app/store/actions";
 import React, { Component } from "react";
 import { connect } from "react-redux";
@@ -8,54 +7,54 @@ import { bindActionCreators } from "redux";
 
 class Auth extends Component {
     state = {
-        waitAuthCheck: true
+        waitAuthCheck: false
     };
 
     componentDidMount() {
-        return Promise.all([this.firebaseCheck()])
-            .then(() => {
-                this.setState({ waitAuthCheck: false });
-            })
-            .catch(error => console.error(error));
+        // return Promise.all([this.firebaseCheck()])
+        //     .then(() => {
+        //         this.setState({ waitAuthCheck: false });
+        //     })
+        //     .catch(error => console.error(error));
     }
 
-    firebaseCheck = () =>
-        new Promise(resolve => {
-            firebaseService.init(success => {
-                if (!success) {
-                    resolve();
-                }
-            });
-
-            firebaseService.onAuthStateChanged(authUser => {
-                if (authUser) {
-                    this.props.showMessage({ message: "Logging in with Firebase" });
-
-                    /**
-                     * Retrieve user data from Firebase
-                     */
-                    firebaseService.getUserData(authUser.uid).then(
-                        user => {
-                            this.props.setUserDataFirebase(user, authUser);
-
-                            resolve();
-
-                            this.props.showMessage({ message: "Logged in with Firebase" });
-                        },
-                        error => {
-                            resolve();
-                        }
-                    );
-                } else {
-                    resolve();
-                }
-            });
-
-            return Promise.resolve();
-        });
+    // firebaseCheck = () =>
+    //     new Promise(resolve => {
+    //         firebaseService.init(success => {
+    //             if (!success) {
+    //                 resolve();
+    //             }
+    //         });
+    //
+    //         firebaseService.onAuthStateChanged(authUser => {
+    //             if (authUser) {
+    //                 this.props.showMessage({ message: "Logging in with Firebase" });
+    //
+    //                 /**
+    //                  * Retrieve user data from Firebase
+    //                  */
+    //                 firebaseService.getUserData(authUser.uid).then(
+    //                     user => {
+    //                         this.props.setUserDataFirebase(user, authUser);
+    //
+    //                         resolve();
+    //
+    //                         this.props.showMessage({ message: "Logged in with Firebase" });
+    //                     },
+    //                     error => {
+    //                         resolve();
+    //                     }
+    //                 );
+    //             } else {
+    //                 resolve();
+    //             }
+    //         });
+    //
+    //         return Promise.resolve();
+    //     });
 
     render() {
-        return this.state.waitAuthCheck ? <FuseSplashScreen /> : <>{this.props.children}</>;
+        return this.state.waitAuthCheck ? <SplashScreen /> : <>{this.props.children}</>;
     }
 }
 

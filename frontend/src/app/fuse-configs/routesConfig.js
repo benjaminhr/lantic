@@ -1,11 +1,16 @@
 import React from "react";
 import FuseUtils from "@fuse/utils";
 import LanticConfigs from "app/main/Lantic/LanticConfigs";
+import { Redirect } from "react-router-dom";
 
-const routeConfigs = [/*...AuthConfigs, indexConfig, VersionConfig,*/ ...LanticConfigs];
+const routeConfigs = [...LanticConfigs];
 
 const routes = [
     ...FuseUtils.generateRoutesFromConfigs(routeConfigs),
+    {
+        path: "/",
+        component: () => <Redirect to={"/home"}/>
+    },
     {
         settings: {
             layout: {
