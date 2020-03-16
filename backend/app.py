@@ -1,5 +1,7 @@
 from flask import Flask, request, jsonify
 import os
+import weather
+import routes
 
 app = Flask(__name__)
 
@@ -7,7 +9,7 @@ app = Flask(__name__)
 def getRoute():
   fromParam = request.args.get('from')
   toParam = request.args.get('to')
-  print(fromParam,toParam)
+
   if not fromParam:
       error = {
         "error":"'From' query parameter unspecified"
@@ -18,10 +20,10 @@ def getRoute():
       "error":"'To' query parameter unspecified"
       }
       return jsonify(error), 400
-  routes = {
-    "routes":[] # filled with all the routes from fromParam to toParam
-  }
-  return jsonify(routes)
+
+  global response
+  response = routes.getRoute(fromParam, toParam)
+  return jsonify(response)
 
 @app.route('/api/getWeather')
 def getWeather():
@@ -38,12 +40,9 @@ def getWeather():
             "error":"'lat' query parameter unspecified"
         }
         return jsonify(error), 400
-    weather = {
-        "status": "", # general weather classifcation e.g 'sunny','rainy','cloudy'
-        "temp": "36.5", # Degrees celsius
-        "windSpeed": "8", # Km/h
-        "windDirection": "S", # values range from N,S,E,W
-    }
+
+    global weather
+    weather = weather.get()
     return jsonify(weather)
 
 if __name__ == '__main__':
