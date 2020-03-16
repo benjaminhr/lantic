@@ -1,7 +1,7 @@
-![Lantic](./lantic.png)
+# Lantic
 
-- To get frontend up and running: 
+- ### To get frontend up and running: 
   - `bla`
 
-- To get backend up and running: 
+- ### To get backend up and running: 
   - `bla`
