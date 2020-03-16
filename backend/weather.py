@@ -3,6 +3,7 @@
   at /api/getWeather?lon=x&lat=y
   
   It should return the weather data as a JSON data file
+  for that specific long (longitude) and lat (latitude)
 """
 def get():
     weather = {
