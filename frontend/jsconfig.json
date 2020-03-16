@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "baseUrl": "src",
+        "paths": {
+            "@history": ["/@history"],
+            "@fuse/*": ["/@fuse/*"],
+            "app/*": ["/app/*"]
+        }
+    },
+    "include": [
+        "src"
+    ]
+}
