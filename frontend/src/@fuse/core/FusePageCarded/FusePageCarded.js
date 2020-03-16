@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import clsx from "clsx";
 import * as PropTypes from "prop-types";
 import React, { useRef } from "react";
-import FusePageCardedHeader from "./FusePageCardedHeader";
 import FusePageCardedSidebar from "./FusePageCardedSidebar";
 
 const drawerWidth = 240;
@@ -31,8 +30,6 @@ const useStyles = makeStyles(theme => ({
         right: 0,
         top: 0,
         height: headerHeight,
-        background: `linear-gradient(to right, ${theme.palette.primary.dark} 0%, ${theme.palette.primary.main} 100%)`,
-        backgroundSize: "cover",
         pointerEvents: "none"
     },
     contentWrapper: {
@@ -61,11 +58,12 @@ const useStyles = makeStyles(theme => ({
     contentCard: {
         display: "flex",
         flex: "1 1 100%",
+        margin: "2rem 0",
         flexDirection: "column",
         backgroundColor: theme.palette.background.paper,
         boxShadow: theme.shadows[1],
         minHeight: 0,
-        borderRadius: "8px 8px 0 0"
+        borderRadius: "8px 8px 8px 8px"
     },
     toolbar: {
         height: toolbarHeight,
@@ -181,7 +179,6 @@ const FusePageCarded = React.forwardRef((props, ref) => {
                             "lg:pr-0"
                     )}
                 >
-                    <FusePageCardedHeader header={props.header} classes={classes} />
 
                     <div className={clsx(classes.contentCard, props.innerScroll && "inner-scroll")}>
                         {props.contentToolbar && <div className={classes.toolbar}>{props.contentToolbar}</div>}

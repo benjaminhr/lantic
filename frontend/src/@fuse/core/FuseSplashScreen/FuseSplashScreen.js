@@ -1,11 +1,14 @@
 import React from "react";
+import Typography from "@material-ui/core/Typography";
 
 function FuseSplashScreen() {
     return (
         <div id="fuse-splash-screen">
             <div className="center">
+                <Typography >
+                    Lantic
+                </Typography>
                 <div className="logo">
-                    {/* <img width="128" src="assets/images/logos/fuse.svg" alt="logo" /> */}
                     <img
                         width="128"
                         src="assets/png%20ico/projectxs%20logo%20new2%20metalic%20blue%20512x512%20ico.ico"

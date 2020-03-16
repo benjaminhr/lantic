@@ -31,7 +31,6 @@ function Logo() {
 
     return (
         <div className={clsx(classes.root, "flex items-center")}>
-            {/* <img className="logo-icon" src="assets/projectxs_logo.png" alt="logo" /> */}
             <img
                 className="logo-icon"
                 src="assets/png%20ico/projectxs%20logo%20new2%20metalic%20blue%20512x512%20ico.ico"
