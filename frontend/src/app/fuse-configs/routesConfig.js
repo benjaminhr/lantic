@@ -1,26 +1,21 @@
 import React from "react";
 import FuseUtils from "@fuse/utils";
-import indexConfig from "app/main/index/IndexConfig";
-import AuthConfigs from "app/main/auth";
-import ProfilePageConfig from "app/main/profile/ProfilePageConfig";
-import VersionConfig from "app/main/version/VersionConfig";
-import IndexPage from "app/main/index/IndexPage";
-import { authRoles } from "app/auth";
+import LanticConfigs from "app/main/Lantic/LanticConfigs";
 
-const routeConfigs = [...AuthConfigs, indexConfig, ProfilePageConfig, VersionConfig];
+const routeConfigs = [/*...AuthConfigs, indexConfig, VersionConfig,*/ ...LanticConfigs];
 
 const routes = [
     ...FuseUtils.generateRoutesFromConfigs(routeConfigs),
     {
-        path: "/",
-        exact: true,
-        auth: authRoles.user,
-        component: () => <IndexPage />
-    },
-    {
         settings: {
             layout: {
                 config: {
+                    navbar: {
+                        display: false
+                    },
+                    toolbar: {
+                        display: false
+                    },
                     footer: {
                         display: false
                     },
@@ -33,7 +28,7 @@ const routes = [
                 }
             }
         },
-        component: React.lazy(() => import("app/main/errors/404/Error404Page"))
+        component: React.lazy(() => import("../main/Lantic/404/Error404Page"))
     }
 ];
 
