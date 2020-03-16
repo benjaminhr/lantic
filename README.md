@@ -27,4 +27,4 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
     - Windows: `.\env\Scripts\activate`
   - install dependencies: `pip3 install -r requirements.txt`
   - in order to close the (activated) python3 environment: `deactivate`
-  - if nothing works: ![visit](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
+  - if nothing works: [visit](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
