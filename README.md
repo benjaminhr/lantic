@@ -1,7 +1,5 @@
 # Lantic
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 - #### To get frontend up and running:
 
     - install yarn on your pc/mac ([yarn](https://classic.yarnpkg.com/en/docs/install#windows-stable))
