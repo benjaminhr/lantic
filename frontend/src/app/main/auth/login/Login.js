@@ -6,6 +6,7 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import * as authActions from "app/auth/store/actions";
 import JWTLoginTab from "./tabs/JWTLoginTab";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -33,7 +34,7 @@ function Login() {
 
                 <FuseAnimate animation="transition.slideUpIn" delay={300}>
                     <Typography variant="h3" color="inherit" className="font-light">
-                        Welcome to the FUSE!
+                        Welcome to Lantic!
                     </Typography>
                 </FuseAnimate>
 
@@ -45,13 +46,18 @@ function Login() {
             <FuseAnimate animation={{ translateX: [0, "100%"] }}>
                 <Card className="w-full max-w-400 mx-auto m-16 md:m-0" square>
                     <CardContent className="flex flex-col items-center justify-center p-32 md:p-48 md:pt-128 ">
-                        <Typography variant="h6" className="text-center md:w-full mb-48">
+                        <Typography variant="h6" className="text-center md:w-full mb-32">
                             LOGIN TO YOUR ACCOUNT
                         </Typography>
 
-                        <img className="h-40 w-full mb-32" src="assets/images/logos/firebase.svg" alt="firebase" />
-
                         <JWTLoginTab submitFunction={authActions.submitLoginWithFireBase} />
+
+                        <div className="flex flex-col items-center justify-center pt-32 pb-24">
+                            <span className="font-medium">Need an account?</span>
+                            <Link className="font-medium" to="/register">
+                                Register
+                            </Link>
+                        </div>
                     </CardContent>
                 </Card>
             </FuseAnimate>

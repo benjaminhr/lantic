@@ -1,10 +1,10 @@
-import React, { useState } from "react";
-import { Card, CardContent, Tab, Tabs, Typography } from "@material-ui/core";
+import React from "react";
+import { Card, CardContent, Typography } from "@material-ui/core";
 import { darken } from "@material-ui/core/styles/colorManipulator";
 import FuseAnimate from "@fuse/core/FuseAnimate";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
-import { makeStyles } from "@material-ui/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import FirebaseRegisterTab from "./tabs/FirebaseRegisterTab";
 
 const useStyles = makeStyles(theme => ({
@@ -19,11 +19,6 @@ const useStyles = makeStyles(theme => ({
 
 function Register() {
     const classes = useStyles();
-    const [selectedTab, setSelectedTab] = useState(0);
-
-    function handleTabChange(event, value) {
-        setSelectedTab(value);
-    }
 
     return (
         <div className={clsx(classes.root, "flex flex-col flex-1 flex-shrink-0 p-24 md:flex-row md:p-0")}>
@@ -34,14 +29,7 @@ function Register() {
 
                 <FuseAnimate animation="transition.slideUpIn" delay={300}>
                     <Typography variant="h3" color="inherit" className="font-light">
-                        Welcome to the FUSE!
-                    </Typography>
-                </FuseAnimate>
-
-                <FuseAnimate delay={400}>
-                    <Typography variant="subtitle1" color="inherit" className="max-w-512 mt-16">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat, vel
-                        convallis elit fermentum pellentesque. Sed mollis velit facilisis facilisis.
+                        Welcome to Lantic!
                     </Typography>
                 </FuseAnimate>
             </div>
@@ -53,17 +41,12 @@ function Register() {
                             CREATE AN ACCOUNT
                         </Typography>
 
-                        <img className="h-40 w-full mb-32" src="assets/images/logos/firebase.svg" alt="firebase" />
-
                         <FirebaseRegisterTab />
 
                         <div className="flex flex-col items-center justify-center pt-32 pb-24">
                             <span className="font-medium">Already have an account?</span>
                             <Link className="font-medium" to="/login">
                                 Login
-                            </Link>
-                            <Link className="font-medium mt-8" to="/">
-                                Back to Dashboard
                             </Link>
                         </div>
 

@@ -1,8 +1,5 @@
 import firebaseService from "app/services/firebaseService";
 import * as Actions from "app/store/actions";
-import _ from "lodash";
-import * as UserActions from "./user.actions";
-import userDefaults from "../../DefaultUser";
 
 export const LOGIN_ERROR = "LOGIN_ERROR";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
