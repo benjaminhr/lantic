@@ -18,7 +18,7 @@
     - MacOs/Linux: `python3 -m pip install --user virtualenv`
     - Windows: `py -m pip install --user virtualenv`
   - create virtual environment:
-    - MacOs/Linux: `virtualenv env`
+    - MacOs/Linux: `virtualenv env` OR `python3 -m venv env`
     - Windows: `py -m venv env`
   - activate the virtual python3 environment:
     - MacOS/Linux: `source env/bin/activate`
