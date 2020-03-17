@@ -11,7 +11,7 @@ function FuseSplashScreen() {
                 <div className="logo">
                     <img
                         width="128"
-                        src="assets/png%20ico/projectxs%20logo%20new2%20metalic%20blue%20512x512%20ico.ico"
+                        src="assets/lantic-logo-512x512.png"
                         alt="logo"
                     />
                 </div>

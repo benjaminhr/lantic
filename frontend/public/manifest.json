@@ -3,8 +3,8 @@
     "name": "Lantic",
     "icons": [
         {
-            "src": "/assets/png ico/projectxs logo new2 metalic blue 256x256 ico.ico",
-            "sizes": "256x256",
+            "src": "/assets/lantic-logo-512x512.png",
+            "sizes": "512x512",
             "type": "image/png"
         }
     ],

@@ -27,7 +27,7 @@ function Login() {
                     {/* <img className="w-128 mb-32" src="assets/images/logos/fuse.svg" alt="logo" /> */}
                     <img
                         className="w-128 mb-32"
-                        src="assets/png%20ico/projectxs%20logo%20new2%20metalic%20blue%20512x512%20ico.ico"
+                        src="assets/lantic-logo-512x512.png"
                         alt="logo"
                     />
                 </FuseAnimate>

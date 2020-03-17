@@ -12,7 +12,6 @@ import Fab from "@material-ui/core/Fab";
 // import Geolocation from "react-geolocation";
 
 function StartScreen() {
-    // const classes = useStyles();
     const [values, setValues] = React.useState({
         from: "",
         fromCoords: {

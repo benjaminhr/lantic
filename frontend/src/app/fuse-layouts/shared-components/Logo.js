@@ -33,7 +33,7 @@ function Logo() {
         <div className={clsx(classes.root, "flex items-center")}>
             <img
                 className="logo-icon"
-                src="assets/png%20ico/projectxs%20logo%20new2%20metalic%20blue%20512x512%20ico.ico"
+                src="assets/lantic-logo-512x512.png"
                 alt="logo"
             />
             <Typography className="text-16 mx-12 font-light logo-text" color="inherit">
