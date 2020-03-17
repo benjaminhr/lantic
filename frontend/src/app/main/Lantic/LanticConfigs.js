@@ -1,8 +1,9 @@
 import SplashScreenConfig from "./SplashScreen/SplashScreenConfig";
 import MapConfig from "./MapView/MapConfig";
-import StartScreenConfig from "app/main/Lantic/StartScreen/StartScreenConfig";
+import StartScreenConfig from "./StartScreen/StartScreenConfig";
+import CommModeConfig from "./CommuteMode/CommModeConfig";
 
-const rawConfigs = [StartScreenConfig];
+const rawConfigs = [StartScreenConfig, CommModeConfig];
 
 const LanticConfigs = rawConfigs.map(conf => {
     conf.settings = {

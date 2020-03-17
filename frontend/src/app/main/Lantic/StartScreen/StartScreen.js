@@ -9,6 +9,8 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import IconButton from "@material-ui/core/IconButton";
 import { MyLocation, Search } from "@material-ui/icons";
 import Fab from "@material-ui/core/Fab";
+import Header from "../SharedComponents/Header/Header";
+import CommuteMode from "../CommuteMode/CommuteMode";
 // import Geolocation from "react-geolocation";
 
 function StartScreen() {
@@ -24,6 +26,8 @@ function StartScreen() {
             lat: ""
         }
     });
+
+    const [page, setPage] = React.useState("home");
 
     const handleChange = prop => event => {
         setValues({ ...values, [prop]: event.target.value });
@@ -46,68 +50,86 @@ function StartScreen() {
     const handleSearch = event => {
         console.log(values);
         setValues({ ...values, toCoords: { long: "0.1419", lat: "51.5014" } });
+        setPage("mode");
+    };
+
+    const back = to => {
+        setPage(to);
+    };
+
+    const whichPage = () => {
+        switch (page) {
+            case "mode": {
+                return <CommuteMode back={back} backLoc={"home"} {...values} />;
+            }
+            default: {
+                return (
+                    <div className="p-12">
+                        <Header className={"min-h-64"} />
+                        <Typography variant="h4" className="company_text font-bold text-center mt-48 mb-32">
+                            Where are you going today?<Icon>cloud</Icon>
+                        </Typography>
+                        <div className={"pt-32"}>
+                            <FormControl variant="outlined" className={"w-full"}>
+                                <InputLabel htmlFor="from-field" className={"font-bold text-lg"}>
+                                    From
+                                </InputLabel>
+                                <OutlinedInput
+                                    id="from-field"
+                                    type="text"
+                                    value={values.from}
+                                    className={"w-full bg-white"}
+                                    onChange={handleChange("from")}
+                                    endAdornment={
+                                        <InputAdornment position="end">
+                                            <IconButton
+                                                aria-label="get your location"
+                                                onClick={handleClickGetLocation}
+                                                edge="end"
+                                            >
+                                                <MyLocation />
+                                            </IconButton>
+                                        </InputAdornment>
+                                    }
+                                    labelWidth={70}
+                                />
+                            </FormControl>
+
+                            <FormControl variant="outlined" className={"w-full mt-16"}>
+                                <InputLabel htmlFor="to-field" className={"font-bold text-lg"}>
+                                    To
+                                </InputLabel>
+                                <OutlinedInput
+                                    id="to-field"
+                                    type="text"
+                                    value={values.to}
+                                    className={"w-full bg-white"}
+                                    onChange={handleChange("to")}
+                                    labelWidth={70}
+                                />
+                            </FormControl>
+                        </div>
+                        <Fab
+                            className={"w-full mt-64"}
+                            disabled={!(values.from && values.to)}
+                            variant="extended"
+                            color="primary"
+                            aria-label="add"
+                            onClick={handleSearch}
+                        >
+                            <Search />
+                            Search
+                        </Fab>
+                    </div>
+                );
+            }
+        }
     };
 
     return (
         <FusePageCarded
             content={
-                <div className="p-24">
-                    <div className="min-h-64">HEADER HERE </div>
-                    <Typography variant="h4" className="company_text font-bold text-center mt-48 mb-32">
-                        Where are you going today?<Icon>cloud</Icon>
-                    </Typography>
-                    <div className={"pt-32"}>
-                        <FormControl variant="outlined" className={"w-full"}>
-                            <InputLabel htmlFor="from-field" className={"font-bold text-lg"}>
-                                From
-                            </InputLabel>
-                            <OutlinedInput
-                                id="from-field"
-                                type="text"
-                                value={values.from}
-                                className={"w-full bg-white"}
-                                onChange={handleChange("from")}
-                                endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton
-                                            aria-label="get your location"
-                                            onClick={handleClickGetLocation}
-                                            edge="end"
-                                        >
-                                            <MyLocation />
-                                        </IconButton>
-                                    </InputAdornment>
-                                }
-                                labelWidth={70}
-                            />
-                        </FormControl>
-
-                        <FormControl variant="outlined" className={"w-full mt-16"}>
-                            <InputLabel htmlFor="to-field" className={"font-bold text-lg"}>
-                                To
-                            </InputLabel>
-                            <OutlinedInput
-                                id="to-field"
-                                type="text"
-                                value={values.to}
-                                className={"w-full bg-white"}
-                                onChange={handleChange("to")}
-                                labelWidth={70}
-                            />
-                        </FormControl>
-                    </div>
-                    <Fab
-                        className={"w-full mt-64"}
-                        disabled={!(values.from && values.to)}
-                        variant="extended"
-                        color="primary"
-                        aria-label="add"
-                        onClick={handleSearch}
-                    >
-                        <Search />
-                        Search
-                    </Fab>
-                </div>
+                whichPage()
             }
         />
     );
