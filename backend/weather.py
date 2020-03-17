@@ -1,3 +1,10 @@
+"""
+  This is called when the API (app.py) gets a request 
+  at /api/getWeather?lon=x&lat=y
+  
+  It should return the weather data as a JSON data file
+  for that specific long (longitude) and lat (latitude)
+"""
 def get():
     weather = {
         "status": "", # general weather classifcation e.g 'sunny','rainy','cloudy'
