@@ -9,6 +9,7 @@ const routes = [
     ...FuseUtils.generateRoutesFromConfigs(routeConfigs),
     {
         path: "/",
+        exact: true,
         component: () => <Redirect to={"/home"}/>
     },
     {

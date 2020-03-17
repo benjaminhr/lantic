@@ -1,7 +1,8 @@
 import SplashScreenConfig from "./SplashScreen/SplashScreenConfig";
 import MapConfig from "./MapView/MapConfig";
+import StartScreenConfig from "app/main/Lantic/StartScreen/StartScreenConfig";
 
-const rawConfigs = [SplashScreenConfig];
+const rawConfigs = [StartScreenConfig];
 
 const LanticConfigs = rawConfigs.map(conf => {
     conf.settings = {

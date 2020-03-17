@@ -4,7 +4,7 @@ function SplashScreen() {
     return (
         <div id="fuse-splash-screen">
             <div className="center">
-                <h1 className={"company_name"}>Lantic</h1>
+                <h1 className={"company_text"}>Lantic</h1>
                 <div className="logo">
                     <img
                         width="128"

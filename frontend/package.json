@@ -53,6 +53,7 @@
         "react-dom": "16.13.0",
         "react-draggable": "4.2.0",
         "react-frame-component": "4.1.1",
+        "react-geolocation": "^1.0.4",
         "react-i18next": "11.3.3",
         "react-masonry-css": "1.0.14",
         "react-number-format": "4.4.1",

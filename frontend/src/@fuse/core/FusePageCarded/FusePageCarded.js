@@ -55,16 +55,16 @@ const useStyles = makeStyles(theme => ({
     headerSidebarToggleButton: {
         color: theme.palette.primary.contrastText
     },
-    contentCard: {
-        display: "flex",
-        flex: "1 1 100%",
-        margin: "2rem 0",
-        flexDirection: "column",
-        backgroundColor: theme.palette.background.paper,
-        boxShadow: theme.shadows[1],
-        minHeight: 0,
-        borderRadius: "8px 8px 8px 8px"
-    },
+    // contentCard: {
+    //     display: "flex",
+    //     flex: "1 1 100%",
+    //     margin: "2rem 0",
+    //     flexDirection: "column",
+    //     backgroundColor: theme.palette.background.paper,
+    //     boxShadow: theme.shadows[1],
+    //     minHeight: 0,
+    //     borderRadius: "8px 8px 8px 8px"
+    // },
     toolbar: {
         height: toolbarHeight,
         minHeight: toolbarHeight,
@@ -180,7 +180,7 @@ const FusePageCarded = React.forwardRef((props, ref) => {
                     )}
                 >
 
-                    <div className={clsx(classes.contentCard, props.innerScroll && "inner-scroll")}>
+                    <div className={clsx( props.innerScroll && "inner-scroll")}>
                         {props.contentToolbar && <div className={classes.toolbar}>{props.contentToolbar}</div>}
 
                         {props.content && (
