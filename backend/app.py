@@ -42,7 +42,7 @@ def getWeather():
         return jsonify(error), 400
 
     global weather
-    weather = weather.get()
+    weather = weather.get(latitude, longitude)
     return jsonify(weather)
 
 if __name__ == '__main__':

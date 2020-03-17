@@ -1,16 +1,77 @@
-"""
-  This is called when the API (app.py) gets a request 
-  at /api/getWeather?lon=x&lat=y
-  
-  It should return the weather data as a JSON data file
-  for that specific long (longitude) and lat (latitude)
-"""
-def get():
-    weather = {
-        "status": "", # general weather classifcation e.g 'sunny','rainy','cloudy'
-        "temp": "36.5", # Degrees celsius
-        "windSpeed": "8", # Km/h
-        "windDirection": "S", # values range from N,S,E,W
-    }
+# NOTE: The below import & wind_cardinals can be moved inside of getWeather
 
-    return weather
+import requests
+
+wind_cardinals = [
+	("N", "North"),
+	("NE", "North East"),
+	("E", "East"),
+	("SE", "South East"),
+	("S", "South"),
+	("SW", "South West"),
+	("W", "West"),
+	("NW", "North West")
+]
+
+# Gets weather at the given latitude and longtitude int/float co-ordinates
+# Returns dictionary with the weather properties, some of which can be 'None'
+def get(lat, lon):
+	# NOTE: Uses my (Jesus') appid / app key, it has some limitations...
+	url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=82694cedde703f7951ad1a3fc6dab044&units=metric"
+	# NOTE: This requests.get appears to be blocking / synchronous, not sure.
+	response = requests.get(url).json()
+	
+	response_status = {}
+	if "weather" in response:
+		value = response["weather"]
+		if isinstance(value, list) and len(value) >= 1:
+			value = value[0]
+			if isinstance(value, dict):
+				response_status = value
+	
+	response_main = {}
+	if "main" in response:
+		value = response["main"]
+		if isinstance(value, dict):
+			response_main = value
+	
+	response_wind = {}
+	if "wind" in response:
+		value = response["wind"]
+		if isinstance(value, dict):
+			response_wind = value
+	
+	wind_speed = response_wind.get("speed")
+	if isinstance(wind_speed, (int, float)):
+		wind_speed *= 2.2369362920544025
+	
+	wind_degrees = response_wind.get("deg")
+	wind_direction = None
+	if isinstance(wind_degrees, (int, float)):
+		wind_cardinal = wind_cardinals[int((wind_degrees / 45) + 0.5) % 8]
+		wind_direction = {
+			"degrees": wind_degrees,
+			"letters": wind_cardinal[0],
+			"name": wind_cardinal[1]
+		}
+	
+	# NOTE: Any of these properties may be 'None', depending on API result.
+	return {
+		# Integer ID of weather type or status
+		"status_id": response_status.get("id"),
+		# String name of weather type or status, like "Clouds"
+		"status_name": response_status.get("main"),
+		# String description of weather; more detailed version of status_name
+		"description": response_status.get("description"),
+		# Temperature in degrees Celsius
+		"temperature": response_main.get("temp"),
+		# The temperature it feels like in degrees Celsius
+		"feels_like": response_main.get("feels_like"),
+		# Humidity % percentage
+		"humidity": response_main.get("humidity"),
+		# Wind speed in MPH (miles per hour)
+		"wind_speed": wind_speed,
+		# Wind direction as dictionary {degrees, letters, name} like:
+		# {"degrees": 310, "letters": "NW", "name": "North West"}
+		"wind_direction": wind_direction
+	}
