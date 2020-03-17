@@ -5,8 +5,8 @@ import routes
 
 app = Flask(__name__)
 
-@app.route('/api/getRoute')
-def getRoute():
+@app.route('/api/getRoutes')
+def getRoutes():
   fromParam = request.args.get('from')
   toParam = request.args.get('to')
 
@@ -22,7 +22,7 @@ def getRoute():
       return jsonify(error), 400
 
   global response
-  response = routes.getRoute(fromParam, toParam)
+  response = routes.getRoutes(fromParam, toParam)
   return jsonify(response)
 
 @app.route('/api/getWeather')
