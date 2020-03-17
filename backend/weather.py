@@ -14,7 +14,8 @@ wind_cardinals = [
 ]
 
 # Gets weather at the given latitude and longtitude int/float co-ordinates
-# Returns dictionary with the weather properties, some of which can be 'None'
+# Returns dictionary with the weather conditions, some of which can be 'None'
+# API weather conditions info: https://openweathermap.org/weather-conditions
 def get(lat, lon):
 	# NOTE: Uses my (Jesus') appid / app key, it has some limitations...
 	url = f"https://api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid=82694cedde703f7951ad1a3fc6dab044&units=metric"
@@ -41,6 +42,10 @@ def get(lat, lon):
 		if isinstance(value, dict):
 			response_wind = value
 	
+	icon_url = response_status.get("icon")
+	if isinstance(icon_url, str):
+		icon_url = f"https://openweathermap.org/img/wn/{icon_url}@2x.png"
+	
 	wind_speed = response_wind.get("speed")
 	if isinstance(wind_speed, (int, float)):
 		wind_speed *= 2.2369362920544025
@@ -63,6 +68,8 @@ def get(lat, lon):
 		"status_name": response_status.get("main"),
 		# String description of weather; more detailed version of status_name
 		"description": response_status.get("description"),
+		# String URL to openweathermap.org's PNG icon for the given weather
+		"icon_url": icon_url,
 		# Temperature in degrees Celsius
 		"temperature": response_main.get("temp"),
 		# The temperature it feels like in degrees Celsius
