@@ -59,12 +59,10 @@
                                     },
                                     "travel_mode": "DRIVING"
                                 }]
-                            }
-                        ]
-                    }
-
-
-                            }
+                              }
+                           }
+                         }
+                            
             ```
     - GET `{host}/api/getWeather?lon=X&lat=Y`
         - NOTE: query parameters must be [URL encoded](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI)
