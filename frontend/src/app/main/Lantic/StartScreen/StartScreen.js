@@ -4,46 +4,76 @@ import CommuteMode from "../CommuteMode/CommuteMode";
 import Start from "./Start";
 
 function StartScreen() {
-    const testRoutes = [
-        {
-            mode: "driving",
-            duration: "25 minutes",
-            distance: "4 mi",
-            routes: "????"
-        },
-        {
-            mode: "walking",
-            duration: "54 minutes",
-            distance: "4 mi",
-            routes: "????2"
-        },
-        {
-            mode: "transit",
-            duration: "37 minutes",
-            distance: "4 mi",
-            routes: "????3"
-        }
-    ];
+    let initialRoutes = [];
+    if (process.env.NODE_ENV !== "production")
+        // when testing, initialise to made up routes
+        initialRoutes = [
+            {
+                mode: "driving",
+                duration: "25 minutes",
+                distance: "4 mi",
+                routes: [
+                    {
+                        instruction: "Take bus from X",
+                        weather: "☀"
+                    },
+                    {
+                        instruction: "Change buses at Y",
+                        weather: "🌧"
+                    },
+                    {
+                        instruction: "Arrive at Z",
+                        weather: "☁"
+                    }
+                ]
+            },
+            {
+                mode: "walking",
+                duration: "54 minutes",
+                distance: "4 mi",
+                routes: [
+                    {
+                        instruction: "Take bus from X",
+                        weather: "☀"
+                    },
+                    {
+                        instruction: "Change buses at Y",
+                        weather: "🌧"
+                    },
+                    {
+                        instruction: "Arrive at Z",
+                        weather: "☁"
+                    }
+                ]
+            },
+            {
+                mode: "transit",
+                duration: "37 minutes",
+                distance: "4 mi",
+                routes: [
+                    {
+                        instruction: "Take bus from X",
+                        weather: "☀"
+                    },
+                    {
+                        instruction: "Change buses at Y",
+                        weather: "🌧"
+                    },
+                    {
+                        instruction: "Arrive at Z",
+                        weather: "☁"
+                    }
+                ]
+            }
+        ];
 
-    const [values, setValues] = React.useState({
+    const [userInput, setUserInput] = React.useState({
         from: "",
-        fromCoords: {
-            long: "",
-            lat: ""
-        },
-        to: "",
-        toCoords: {
-            long: "",
-            lat: ""
-        }
-    });
-    const [page, setPage] = React.useState("home");
-    const [option, setOption] = React.useState(null);
-    const [routes, setRoutes] = React.useState(testRoutes);
-
-    const back = to => {
-        setPage(to);
-    };
+        to: ""
+    }); // tracks user input values
+    const [page, setPage] = React.useState("home"); // dont reinvent the wheel, ye well....
+    const [option, setOption] = React.useState(null); // which option was selected
+    const [routes, setRoutes] = React.useState(initialRoutes); // routes (ie Bus vs Walk)
 
     const whichPage = () => {
         switch (page) {
@@ -54,23 +84,22 @@ function StartScreen() {
                     setPage,
                     routes,
                     backLoc: "home",
-                    ...values
+                    ...userInput
                 };
                 return <CommuteMode {...newProps} />;
             }
             case "map": {
                 return (
-                    <div routes setPage={back} backLoc="mode" {...values}>
+                    <div routes setPage={setPage} backLoc="mode" {...userInput}>
                         Map Here!
                     </div>
                 );
             }
             default: {
-                // setRoutes(null)
                 const newProps = {
                     setPage,
-                    values,
-                    setValues,
+                    userInput,
+                    setUserInput,
                     setRoutes,
                     setOption
                 };

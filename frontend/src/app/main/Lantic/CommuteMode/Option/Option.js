@@ -17,7 +17,7 @@ function Option(props) {
     return (
         <ListItem className={"py-0 border mb-4 rounded-lg bg-white"} selected={active} onClick={activate} button>
             <ListItemAvatar>
-                <Avatar className={"bg-grey"}>
+                <Avatar style={{ color: "#435783", backgroundColor: "#BCD0DE" }}>
                     {mode === "walking" && <DirectionsWalk />}
                     {mode === "transit" && <DirectionsTransit />}
                     {mode === "driving" && <DirectionsCar />}

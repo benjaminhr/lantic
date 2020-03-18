@@ -4,12 +4,9 @@ import { KeyboardArrowRight } from "@material-ui/icons";
 import Header from "../SharedComponents/Header/Header";
 import Option from "./Option/Option";
 import _ from "lodash";
+import RouteDetails from "app/main/Lantic/CommuteMode/RouteDetails/RouteDetails";
 
 function CommuteMode(props) {
-    if (!props.from) {
-        props = { ...props, from: "Test From", to: "Test To" };
-    }
-
     const { option, setOption, setPage, to, from, routes } = props;
     const [detail, setDetail] = React.useState(false);
 
@@ -25,14 +22,14 @@ function CommuteMode(props) {
         setOption
     };
 
-    const sorted = _.sortBy(routes, [
+    const sortedRoutes = _.sortBy(routes, [
         route => {
             return route.duration.split(" ")[0];
         }
     ]);
 
     return (
-        <div className="p-12">
+        <div className="p-12 h-full">
             <Header className="min-h-64" {...props} />
             <Typography variant="h5" className="company_text font-bold text-left mt-48">
                 {`${from}`}
@@ -45,11 +42,11 @@ function CommuteMode(props) {
             </Typography>
 
             <div>
-                {detail ? (
-                    <span></span>
+                {detail && option != null ? (
+                    <RouteDetails route={sortedRoutes[option]} {...props} />
                 ) : (
                     <List className={"py-0 rounded-lg"}>
-                        {sorted.map((route, i) => (
+                        {sortedRoutes.map((route, i) => (
                             <Option {...optProps} route={route} active={option === i} id={i} key={i} />
                         ))}
                     </List>
