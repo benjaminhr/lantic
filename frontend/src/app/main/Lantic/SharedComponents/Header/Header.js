@@ -3,13 +3,15 @@ import IconButton from "@material-ui/core/IconButton";
 import { Settings, KeyboardArrowLeft, KeyboardBackspace } from "@material-ui/icons";
 
 function Header(props) {
+    const { setPage, backLoc } = props;
+
     const goBack = () => {
-        props.setPage(props.backLoc);
+        setPage(backLoc);
     };
 
     return (
-        <div className={`grid grid-cols-4`}>
-            {props.backLoc ? (
+        <div className="grid grid-cols-4">
+            {backLoc ? (
                 <IconButton aria-label="back" edge="start" onClick={goBack}>
                     <KeyboardBackspace />
                 </IconButton>

@@ -15,6 +15,8 @@ function Start(props) {
         props.setValues({ ...props.values, [prop]: event.target.value });
     };
 
+    props.setOption(null);
+
     const handleClickGetLocation = event => {
         event.preventDefault();
         setTimeout(() => {

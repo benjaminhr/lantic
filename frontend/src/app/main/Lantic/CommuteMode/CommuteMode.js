@@ -1,40 +1,59 @@
 import React from "react";
-import Typography from "@material-ui/core/Typography";
+import { List, Typography, Fab } from "@material-ui/core";
 import { KeyboardArrowRight } from "@material-ui/icons";
-import Fab from "@material-ui/core/Fab";
 import Header from "../SharedComponents/Header/Header";
 import Option from "./Option/Option";
-import List from "@material-ui/core/List";
+import _ from "lodash";
 
 function CommuteMode(props) {
     if (!props.from) {
         props = { ...props, from: "Test From", to: "Test To" };
     }
 
-    const option = props.option;
-    const setOption = props.setOption;
+    const { option, setOption, setPage, to, from, routes } = props;
+    const [detail, setDetail] = React.useState(false);
 
     const goToMap = () => {
-        props.setPage("map");
+        setPage("map");
     };
+
+    const goToDetails = () => {
+        setDetail(true);
+    };
+
+    const optProps = {
+        setOption
+    };
+
+    const sorted = _.sortBy(routes, [
+        route => {
+            return route.duration.split(" ")[0];
+        }
+    ]);
 
     return (
         <div className="p-12">
             <Header className="min-h-64" {...props} />
             <Typography variant="h5" className="company_text font-bold text-left mt-48">
-                {`${props.from}`}
+                {`${from}`}
             </Typography>
             <Typography variant="h5" className="company_text font-bold text-left">
                 {`to`}
             </Typography>
             <Typography variant="h5" className="company_text font-bold text-left mb-32">
-                {`${props.to}`}
+                {`${to}`}
             </Typography>
+
             <div>
-                <List className={"bg-white"}>
-                    <Option set={setOption} active={option === 1} id={1} />
-                    <Option set={setOption} active={option === 2} id={2} />
-                </List>
+                {detail ? (
+                    <span></span>
+                ) : (
+                    <List className={"py-0 rounded-lg"}>
+                        {sorted.map((route, i) => (
+                            <Option {...optProps} route={route} active={option === i} id={i} key={i} />
+                        ))}
+                    </List>
+                )}
             </div>
 
             <Fab
@@ -43,10 +62,10 @@ function CommuteMode(props) {
                 disabled={option === null}
                 color="primary"
                 aria-label="add"
-                onClick={goToMap}
+                onClick={goToDetails}
             >
-                <KeyboardArrowRight />
-                Go!
+                {detail && <KeyboardArrowRight />}
+                {detail ? "Go" : "View"}
             </Fab>
         </div>
     );

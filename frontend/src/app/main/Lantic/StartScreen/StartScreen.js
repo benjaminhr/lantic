@@ -4,6 +4,27 @@ import CommuteMode from "../CommuteMode/CommuteMode";
 import Start from "./Start";
 
 function StartScreen() {
+    const testRoutes = [
+        {
+            mode: "driving",
+            duration: "25 minutes",
+            distance: "4 mi",
+            routes: "????"
+        },
+        {
+            mode: "walking",
+            duration: "54 minutes",
+            distance: "4 mi",
+            routes: "????2"
+        },
+        {
+            mode: "transit",
+            duration: "37 minutes",
+            distance: "4 mi",
+            routes: "????3"
+        }
+    ];
+
     const [values, setValues] = React.useState({
         from: "",
         fromCoords: {
@@ -18,6 +39,7 @@ function StartScreen() {
     });
     const [page, setPage] = React.useState("home");
     const [option, setOption] = React.useState(null);
+    const [routes, setRoutes] = React.useState(testRoutes);
 
     const back = to => {
         setPage(to);
@@ -26,17 +48,33 @@ function StartScreen() {
     const whichPage = () => {
         switch (page) {
             case "mode": {
-                return <CommuteMode option={option} setOption={setOption} setPage={back} backLoc="home" {...values} />;
+                const newProps = {
+                    option,
+                    setOption,
+                    setPage,
+                    routes,
+                    backLoc: "home",
+                    ...values
+                };
+                return <CommuteMode {...newProps} />;
             }
             case "map": {
                 return (
-                    <div setPage={back} backLoc="mode" {...values}>
+                    <div routes setPage={back} backLoc="mode" {...values}>
                         Map Here!
                     </div>
                 );
             }
             default: {
-                return <Start setPage={back} values={values} setValues={setValues} />;
+                // setRoutes(null)
+                const newProps = {
+                    setPage,
+                    values,
+                    setValues,
+                    setRoutes,
+                    setOption
+                };
+                return <Start {...newProps} />;
             }
         }
     };
