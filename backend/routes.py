@@ -32,6 +32,11 @@ def getRoutes(fromLocation, toLocation):
 
         mapsRequest = requests.get(url)
         mapsResponse = mapsRequest.json()
+        routes = mapsResponse["routes"]
+
+        if len(routes) == 0:
+          continue
+
         newMapsResponse = {
             "mode" : mode,
             "duration" : mapsResponse["routes"][0]["legs"][0]["duration"]["text"],
