@@ -10,60 +10,56 @@
         - Example response: 
             ```json
                 {
-                    "routes": [
-                        {
-                            "mode": "<'driving' | 'transit' | 'walking'>",
-                            "duration": "<int> mins",
-                            "distance": "<int> km",
-                            "routes": [
-                                {
-                                    "distance": {
-                                        "text": "<int> km",
-                                        "value": "<int>"
-                                    },
-                                    "duration": {
-                                        "text": "<int> mins",
-                                        "value": "<int>"
-                                    },
-                                    "end_address": "<string>",
-                                    "end_location": {
-                                        "lat": "<float>",
-                                        "lng": "<float>"
-                                    },
-                                    "start_address": "<string>",
-                                    "start_location": {
-                                        "lat": "<float>",
-                                        "lng": "<float>"
-                                    },
-                                    "steps": [
-                                        {
-                                          "distance": {
-                                              "text": "<int> m",
-                                              "value": "<int>"
-                                          },
-                                          "duration": {
-                                              "text": "<int> km",
-                                              "value": "<int>"
-                                          },
-                                          "end_location": {
-                                              "lat": "<float>",
-                                              "lng": "<float>"
-                                          },
-                                          "html_instructions": "<string>",
-                                          "polyline": {
-                                              "points": "<int>"
-                                          },
-                                          "start_location": {
-                                              "lat": "<float>",
-                                              "lng": "<float>"
-                                          },
-                                          "travel_mode": "DRIVING"
-                                        }
-                                }]
-                            }]
-                        }
-                    }
+                  "routes": [{
+                    "mode": "<'driving' | 'transit' | 'walking'>",
+                    "duration": "<int> mins",
+                    "distance": "<int> km",
+                    "routes": [{
+                      "distance": {
+                        "text": "<int> km",
+                        "value": "<int>"
+                      },
+                      "duration": {
+                        "text": "<int> mins",
+                        "value": "<int>"
+                      },
+                      "end_address": "<string>",
+                      "end_location": {
+                        "lat": "<float>",
+                        "lng": "<float>"
+                      },
+                      "start_address": "<string>",
+                      "start_location": {
+                        "lat": "<float>",
+                        "lng": "<float>"
+                      },
+                      "steps": [{
+                        "distance": {
+                          "text": "<int> m",
+                          "value": "<int>"
+                        },
+                        "duration": {
+                          "text": "<int> km",
+                          "value": "<int>"
+                        },
+                        "end_location": {
+                          "lat": "<float>",
+                          "lng": "<float>"
+                        },
+                        "html_instructions": "<string>",
+                        "polyline": {
+                          "points": "<int>"
+                        },
+                        "start_location": {
+                          "lat": "<float>",
+                          "lng": "<float>"
+                        },
+                        "travel_mode": "DRIVING"
+                      }]
+                    }]
+                  }]
                 }
+
                             
             ```
     - GET `{host}/api/getWeather?lon=X&lat=Y`
