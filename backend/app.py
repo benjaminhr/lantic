@@ -42,8 +42,8 @@ def getWeather():
         return jsonify(error), 400
 
     global weather
-    weather = weather.get(latitude, longitude)
-    return jsonify(weather)
+    weatherResponse = weather.get(latitude, longitude)
+    return jsonify(weatherResponse)
 
 if __name__ == '__main__':
   port = int(os.environ.get("PORT",5000))
