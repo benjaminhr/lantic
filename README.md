@@ -2,6 +2,7 @@
 
 - #### To get frontend up and running:
 
+    - you probably need node installed on your computer for any of this stuff to run
     - install yarn on your pc/mac ([yarn](https://classic.yarnpkg.com/en/docs/install#windows-stable))
         - choose version 1.22.4 (cos yarn 2 may have issues with the code)
     - change into the frontend directory: `cd frontend`

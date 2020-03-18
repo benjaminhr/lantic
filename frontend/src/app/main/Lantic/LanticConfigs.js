@@ -1,4 +1,3 @@
-import SplashScreenConfig from "./SplashScreen/SplashScreenConfig";
 import MapConfig from "./MapView/MapConfig";
 import StartScreenConfig from "./StartScreen/StartScreenConfig";
 import CommModeConfig from "./CommuteMode/CommModeConfig";
