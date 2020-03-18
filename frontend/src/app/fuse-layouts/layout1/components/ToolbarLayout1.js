@@ -9,7 +9,6 @@ import NavbarMobileToggleButton from "app/fuse-layouts/shared-components/NavbarM
 import UserMenu from "app/fuse-layouts/shared-components/UserMenu";
 import React from "react";
 import { useSelector } from "react-redux";
-import LoggedIn from "app/utils/LoggedIn";
 import LanguageSwitcher from "../../shared-components/LanguageSwitcher";
 
 const useStyles = makeStyles(theme => ({
@@ -53,10 +52,6 @@ function ToolbarLayout1(props) {
                         {/* <FuseSearch /> */}
                         <div className={classes.separator} />
                         <LanguageSwitcher />
-                        <LoggedIn>
-                            <div className={classes.separator} />
-                            <UserMenu />
-                        </LoggedIn>
                         {/* <QuickPanelToggleButton /> */}
                     </div>
                     {config.navbar.display && config.navbar.position === "right" && (
