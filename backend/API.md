@@ -28,12 +28,12 @@
                                 "end_address": "<string>",
                                 "end_location": {
                                     "lat": "<float>",
-                                    "lng": "<float>",
+                                    "lng": "<float>"
                                 },
                                 "start_address": "<string>",
                                 "start_location": {
                                     "lat": "<float>",
-                                    "lng": "<float>",
+                                    "lng": "<float>"
                                 },
                                 "steps": [
                                     {
@@ -47,7 +47,7 @@
                                     },
                                     "end_location": {
                                         "lat": "<float>",
-                                        "lng": "<float>",
+                                        "lng": "<float>"
                                     },
                                     "html_instructions": "<string>",
                                     "polyline": {
@@ -55,7 +55,7 @@
                                     },
                                     "start_location": {
                                         "lat": "<float>",
-                                        "lng": "<float>",
+                                        "lng": "<float>"
                                     },
                                     "travel_mode": "DRIVING"
                                 }]
