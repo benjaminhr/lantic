@@ -62,7 +62,6 @@
 
                             
             ```
-            
     - GET `{host}/api/getWeather?lon=X&lat=Y`
         - NOTE: query parameters must be [URL encoded](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI)
         - where `X` is a float value that is the longitude in degrees
@@ -72,18 +71,18 @@
         - Example response: 
         ```json
             {
-                "description": "broken clouds",
-                "feels_like": 6.98,
-                "humidity": 71,
-                "icon_url": "https://openweathermap.org/img/wn/04n@2x.png",
-                "status_id": 803,
-                "status_name": "<'clear skydriving' | 'few clouds' | 'scattered clouds | 'broken clouds' | 'shower rain' | 'rain' | 'thunderstorm' | 'snow' | 'mist'>",
-                "temperature": "<float>",
-                "wind_direction": {
-                    "degrees": 220,
-                    "letters": "SW",
-                    "name": "South West"
-                },
-                "wind_speed": 9.171438797423049
+              "description": "few clouds",
+              "feels_like": 5.84,
+              "humidity": 76,
+              "icon_url": "https://openweathermap.org/img/wn/02n@2x.png",
+              "status_id": 801,
+              "status_name": "Clouds",
+              "temperature": 10.28,
+              "wind_direction": {
+                "degrees": 230,
+                "letters": "SW",
+                "name": "South West"
+              },
+              "wind_speed": 11.408375089477452
             }
         ```
