@@ -105,7 +105,7 @@ backend/celerybeat.pid
 backend/*.sage.py
 
 # Environments
-#.env
+.env
 backend/.venv
 backend/env/
 backend/venv/
