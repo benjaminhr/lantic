@@ -3,15 +3,8 @@ import IconButton from "@material-ui/core/IconButton";
 import { Settings, KeyboardArrowLeft, KeyboardBackspace } from "@material-ui/icons";
 
 function Header(props) {
-    if (props.backLoc) {
-        const goBack = () => {
-            alert("go back");
-            props.back();
-        };
-    }
-
     const goBack = () => {
-        props.back(props.backLoc);
+        props.setPage(props.backLoc);
     };
 
     return (
