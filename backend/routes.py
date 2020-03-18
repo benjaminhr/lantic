@@ -32,9 +32,8 @@ def getRoutes(fromLocation, toLocation):
 
         mapsRequest = requests.get(url)
         mapsResponse = mapsRequest.json()
-        routes = mapsResponse["routes"]
 
-        if len(routes) == 0:
+        if len(mapsResponse["routes"]) == 0:
           continue
 
         newMapsResponse = {
