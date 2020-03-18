@@ -43,7 +43,7 @@
                                     },
                                     "duration": {
                                         "text": "<int> km",
-                                        "value": <int>
+                                        "value": "<int>"
                                     },
                                     "end_location": {
                                         "lat": "<float>",
@@ -81,7 +81,7 @@
                 "icon_url": "https://openweathermap.org/img/wn/04n@2x.png",
                 "status_id": 803,
                 "status_name": "<'clear skydriving' | 'few clouds' | 'scattered clouds | 'broken clouds' | 'shower rain' | 'rain' | 'thunderstorm' | 'snow' | 'mist'>",
-                "temperature": "<float>" # degrees celsius,
+                "temperature": "<float>",
                 "wind_direction": {
                     "degrees": 220,
                     "letters": "SW",
