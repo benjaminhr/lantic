@@ -179,8 +179,7 @@ const FusePageCarded = React.forwardRef((props, ref) => {
                             "lg:pr-0"
                     )}
                 >
-
-                    <div className={clsx( props.innerScroll && "inner-scroll")}>
+                    <div className={clsx(props.innerScroll && "inner-scroll")}>
                         {props.contentToolbar && <div className={classes.toolbar}>{props.contentToolbar}</div>}
 
                         {props.content && (

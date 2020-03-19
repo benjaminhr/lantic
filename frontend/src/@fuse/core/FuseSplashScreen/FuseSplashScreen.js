@@ -5,15 +5,9 @@ function FuseSplashScreen() {
     return (
         <div id="fuse-splash-screen">
             <div className="center">
-                <Typography >
-                    Lantic
-                </Typography>
+                <Typography>Lantic</Typography>
                 <div className="logo">
-                    <img
-                        width="128"
-                        src="assets/lantic-logo-512x512.png"
-                        alt="logo"
-                    />
+                    <img width="128" src="assets/lantic-logo-512x512.png" alt="logo" />
                 </div>
                 <div className="spinner-wrapper">
                     <div className="spinner">

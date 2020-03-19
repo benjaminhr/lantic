@@ -16,10 +16,10 @@ function Header(props) {
                     <KeyboardBackspace />
                 </IconButton>
             ) : (
-                <span></span>
+                <span />
             )}
-            <span></span>
-            <span></span>
+            <span />
+            <span />
             <IconButton aria-label="settings" edge="end">
                 <Settings />
             </IconButton>
