@@ -24,7 +24,16 @@ function CommuteMode(props) {
 
     const sortedRoutes = _.sortBy(routes, [
         route => {
-            return route.duration.split(" ")[0];
+            const d = route.duration;
+            const isHours = d.indexOf("hour");
+            let hours = 0;
+            if (isHours !== -1) hours = Number(d.slice(0, isHours - 1));
+
+            const half = d.split(" min")[0];
+            let mins = Number(half.slice(half.length - 2));
+            mins += hours * 60;
+
+            return mins;
         }
     ]);
 
