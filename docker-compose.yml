@@ -1,13 +1,6 @@
 version: '3.6'
 
 services:
-  proxy:
-    image: mesudip/nginx-proxy
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-    ports:
-      - 80:80
-
   backend:
     build: backend
     image: registry.heroku.com/lantic-backend/web
@@ -15,7 +8,8 @@ services:
       - ./backend:/app
     environment: 
       - MODE=dev
-      - VIRTUAL_HOST=lantic-backend.dev.benjaminhr.com -> :5000
+    ports:
+      - 5000:5000
 
   # frontend:
   #   build: frontend
