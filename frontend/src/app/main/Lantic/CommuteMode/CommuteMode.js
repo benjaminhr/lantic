@@ -68,7 +68,7 @@ function CommuteMode(props) {
                 disabled={option === null}
                 color="primary"
                 aria-label="add"
-                onClick={goToDetails}
+                onClick={detail ? goToMap : goToDetails}
             >
                 {detail && <KeyboardArrowRight />}
                 {detail ? "Go" : "View"}

@@ -1,8 +1,7 @@
 import MapConfig from "./MapView/MapConfig";
 import StartScreenConfig from "./StartScreen/StartScreenConfig";
-import CommModeConfig from "./CommuteMode/CommModeConfig";
 
-const rawConfigs = [StartScreenConfig, CommModeConfig];
+const rawConfigs = [StartScreenConfig];
 
 const LanticConfigs = rawConfigs.map(conf => {
     conf.settings = {

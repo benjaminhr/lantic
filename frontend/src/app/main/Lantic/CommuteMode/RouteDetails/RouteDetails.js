@@ -1,8 +1,7 @@
 import React, { useEffect } from "react";
-import { DirectionsTransit, DirectionsWalk, DirectionsCar, Album, MoreVert } from "@material-ui/icons";
-import _ from "lodash";
+import { Album, MoreVert } from "@material-ui/icons";
 import FuseAnimateGroup from "@fuse/core/FuseAnimateGroup";
-import { Typography, ListItem, ListItemAvatar, Avatar, ListItemText, List } from "@material-ui/core";
+import { ListItem, ListItemAvatar, Avatar, ListItemText, List } from "@material-ui/core";
 import axios from "axios";
 import Option from "app/main/Lantic/CommuteMode/Option/Option";
 import FuseLoading from "@fuse/core/FuseLoading";
@@ -30,7 +29,7 @@ function RouteDetails(props) {
         ).then(ST => {
             setWeatherInfo(ST);
         });
-    }, [steps]);
+    }, [setWeatherInfo, steps]);
 
     const seperatorDots = key => (
         <ListItem className="py-0" key={key}>

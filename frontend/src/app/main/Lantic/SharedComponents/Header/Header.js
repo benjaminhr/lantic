@@ -1,6 +1,6 @@
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
-import { Settings, KeyboardArrowLeft, KeyboardBackspace } from "@material-ui/icons";
+import { Settings, KeyboardBackspace } from "@material-ui/icons";
 
 function Header(props) {
     const { setPage, backLoc } = props;
