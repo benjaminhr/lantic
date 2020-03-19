@@ -1,4 +1,6 @@
 # Lantic API docs
+- HOST: `https://lantic-backend.herokuapp.com`
+  - note: if the server has been idle for x amount of time, the first request will take a while as the server is booting.
 - ### endpoints: 
     - GET `{host}/api/getRoutes?from=X&to=Y`
         - NOTE: query parameters must be [URL encoded](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI)
