@@ -1,10 +1,9 @@
 import React, { useEffect } from "react";
 import { Album, MoreVert } from "@material-ui/icons";
 import FuseAnimateGroup from "@fuse/core/FuseAnimateGroup";
-import { ListItem, ListItemAvatar, Avatar, ListItemText, List } from "@material-ui/core";
+import { ListItem, ListItemAvatar, Avatar, ListItemText, List, CircularProgress } from "@material-ui/core";
 import axios from "axios";
 import Option from "app/main/Lantic/CommuteMode/Option/Option";
-import FuseLoading from "@fuse/core/FuseLoading";
 
 function RouteDetails(props) {
     const { route, weatherInfo, setWeatherInfo } = props;
@@ -50,7 +49,9 @@ function RouteDetails(props) {
                 }}
             >
                 {!weatherInfo ? (
-                    <FuseLoading />
+                    <div className={"text-center"}>
+                        <CircularProgress />
+                    </div>
                 ) : (
                     weatherInfo.map((step, i) => (
                         <React.Fragment key={i}>
@@ -64,10 +65,12 @@ function RouteDetails(props) {
                                     primary={<span dangerouslySetInnerHTML={{ __html: step.html_instructions }} />}
                                 />
                                 <ListItemAvatar>
-                                    <Avatar style={{ color: "#435783", backgroundColor: "#BCD0DE" }}>
-                                        <img src={step.weather.icon_url} alt="weather icon" />
-                                    </Avatar>
-                                    {step.weather.status_name}
+                                    <React.Fragment>
+                                        <Avatar style={{ color: "#435783", backgroundColor: "#BCD0DE" }}>
+                                            <img src={step.weather.icon_url} alt="weather icon" />
+                                        </Avatar>
+                                        {step.weather.status_name}
+                                    </React.Fragment>
                                 </ListItemAvatar>
                             </ListItem>
                             {i < steps.length - 1 && seperatorDots(steps.length + i)}

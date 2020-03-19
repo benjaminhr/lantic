@@ -7,7 +7,7 @@ import Header from "../SharedComponents/Header/Header";
 import Option from "./Option/Option";
 
 function CommuteMode(props) {
-    const { option, setOption, setPage, to, from, routes } = props;
+    const { option, setOption, setPage, to, from, routes, weatherInfo } = props;
     const [detail, setDetail] = React.useState(false);
 
     const goToMap = () => {
@@ -65,7 +65,7 @@ function CommuteMode(props) {
             <Fab
                 className="w-full my-64"
                 variant="extended"
-                disabled={option === null}
+                disabled={option === null || (detail && !weatherInfo)}
                 color="primary"
                 aria-label="add"
                 onClick={detail ? goToMap : goToDetails}
