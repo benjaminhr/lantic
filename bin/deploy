@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+docker-compose build
+docker-compose push
+
+heroku container:release web -a lantic-backend
+(
+  while true; do
+    curl lantic-backend.herokuapp.com/healthz && break
+    echo "not healthy, retrying"
+    sleep 1
+  done
+) &
+
+heroku logs -t -a lantic-backend

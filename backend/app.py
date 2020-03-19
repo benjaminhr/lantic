@@ -7,6 +7,10 @@ import routes
 app = Flask(__name__)
 CORS(app)
 
+@app.route('/healthz')
+def healthz():
+    return "ok"
+
 @app.route('/api/getRoutes')
 def getRoutes():
   fromParam = request.args.get('from')
