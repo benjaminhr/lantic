@@ -99,7 +99,7 @@ function Start(props) {
                 </FormControl>
             </div>
             <Fab
-                className="w-full mt-64"
+                className="w-full my-64"
                 disabled={!(userInput.from && userInput.to)}
                 variant="extended"
                 color="primary"

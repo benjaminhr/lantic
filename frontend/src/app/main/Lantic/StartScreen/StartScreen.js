@@ -74,6 +74,7 @@ function StartScreen() {
     const [page, setPage] = React.useState("home"); // dont reinvent the wheel, ye well....
     const [option, setOption] = React.useState(null); // which option was selected
     const [routes, setRoutes] = React.useState(initialRoutes); // routes (ie Bus vs Walk)
+    const [weatherInfo, setWeatherInfo] = React.useState(); // for storing weather info globally
 
     const whichPage = () => {
         switch (page) {
@@ -83,6 +84,8 @@ function StartScreen() {
                     setOption,
                     setPage,
                     routes,
+                    weatherInfo,
+                    setWeatherInfo,
                     backLoc: "home",
                     ...userInput
                 };

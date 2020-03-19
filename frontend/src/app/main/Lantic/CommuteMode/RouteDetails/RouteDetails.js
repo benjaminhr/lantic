@@ -4,12 +4,12 @@ import _ from "lodash";
 import FuseAnimateGroup from "@fuse/core/FuseAnimateGroup";
 import { Typography, ListItem, ListItemAvatar, Avatar, ListItemText, List } from "@material-ui/core";
 import axios from "axios";
+import Option from "app/main/Lantic/CommuteMode/Option/Option";
+import FuseLoading from "@fuse/core/FuseLoading";
 
 function RouteDetails(props) {
-    const { route } = props;
-    const { mode, duration, routes } = route;
-    const [weatherInfo, setWeatherInfo] = React.useState();
-
+    const { route, weatherInfo, setWeatherInfo } = props;
+    const { routes } = route;
     const { steps } = routes[0];
 
     useEffect(() => {
@@ -44,22 +44,15 @@ function RouteDetails(props) {
 
     return (
         <List className="bg-white pt-0 rounded-lg">
-            <ListItem className="py-0 mb-4 rounded-lg bg-white">
-                <ListItemAvatar>
-                    <Avatar style={{ color: "#435783", backgroundColor: "#BCD0DE" }}>
-                        {mode === "walking" && <DirectionsWalk />}
-                        {mode === "transit" && <DirectionsTransit />}
-                        {mode === "driving" && <DirectionsCar />}
-                    </Avatar>
-                </ListItemAvatar>
-                <ListItemText primary={_.capitalize(mode)} secondary={duration} />
-            </ListItem>
+            <Option route={route} active={false} noBtn={1} />
             <FuseAnimateGroup
                 enter={{
                     animation: "transition.slideUpBigIn"
                 }}
             >
-                {weatherInfo &&
+                {!weatherInfo ? (
+                    <FuseLoading />
+                ) : (
                     weatherInfo.map((step, i) => (
                         <React.Fragment key={i}>
                             <ListItem dense className="py-0 bg-white">
@@ -68,7 +61,9 @@ function RouteDetails(props) {
                                         <Album />
                                     </Avatar>
                                 </ListItemAvatar>
-                                <ListItemText primary={step.html_instructions} />
+                                <ListItemText
+                                    primary={<span dangerouslySetInnerHTML={{ __html: step.html_instructions }} />}
+                                />
                                 <ListItemAvatar>
                                     <Avatar style={{ color: "#435783", backgroundColor: "#BCD0DE" }}>
                                         <img src={step.weather.icon_url} alt="weather icon" />
@@ -77,9 +72,9 @@ function RouteDetails(props) {
                                 </ListItemAvatar>
                             </ListItem>
                             {i < steps.length - 1 && seperatorDots(steps.length + i)}
-                            {console.log(step)}
                         </React.Fragment>
-                    ))}
+                    ))
+                )}
             </FuseAnimateGroup>
         </List>
     );

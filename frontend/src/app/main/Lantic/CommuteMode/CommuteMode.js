@@ -63,7 +63,7 @@ function CommuteMode(props) {
             </div>
 
             <Fab
-                className="w-full mt-64"
+                className="w-full my-64"
                 variant="extended"
                 disabled={option === null}
                 color="primary"
