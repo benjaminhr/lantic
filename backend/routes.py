@@ -28,7 +28,7 @@ def getRoutes(fromLocation, toLocation):
     toLocation = formatQuery(toLocation)
 
     for mode in transportModes:
-        url = f"https://maps.googleapis.com/maps/api/directions/json?origin={fromLocation}&destination={toLocation}&key=AIzaSyCY8FhP9BQbGe-7H1Hrciv14El9j5PgKx0&mode={mode}"
+        url = f"https://maps.googleapis.com/maps/api/directions/json?origin={fromLocation}&destination={toLocation}&key={MAPS_API_KEY}&mode={mode}"
 
         mapsRequest = requests.get(url)
         mapsResponse = mapsRequest.json()
