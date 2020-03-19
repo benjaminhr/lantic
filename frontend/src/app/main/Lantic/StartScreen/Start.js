@@ -7,20 +7,21 @@ import {
     InputLabel,
     OutlinedInput,
     InputAdornment,
-    IconButton
+    IconButton,
+    CircularProgress
 } from "@material-ui/core";
 import { MyLocation, Search } from "@material-ui/icons";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import axios from "axios";
 
 function Start(props) {
     // axios config
-    // todo enter correct url here
     axios.defaults.baseURL =
         process.env.NODE_ENV === "production" ? "http://our-site-url.com" : "http://127.0.0.1:5000";
     axios.defaults.headers["Content-Type"] = "application/x-www-form-urlencoded";
 
     const { setRoutes, setPage, setOption, userInput, setUserInput } = props;
+    const [loading, setLoading] = React.useState(false);
 
     const handleChange = prop => event => {
         setUserInput({ ...userInput, [prop]: event.target.value });
@@ -40,21 +41,36 @@ function Start(props) {
         }, 250);
     };
 
-    const handleSearch = event => {
-        // todo change for production deploy
-        if (process.env.NODE_ENV !== "production") {
+    const handleSearch = useCallback(
+        event => {
+            setLoading(true);
             axios
                 .get(`/api/getRoutes?from=${userInput.from}&to=${userInput.to}`)
                 .then(resp => {
                     // console.log(resp);
+                    setLoading(false);
                     setRoutes(resp.data.routes);
                     setPage("mode");
                 })
-                .catch(err => console.log(err.message));
-        } else {
-            setPage("mode");
-        }
-    };
+                .catch(err => {
+                    setLoading(false);
+                    console.log(err.message);
+                });
+        },
+        [setPage, setRoutes, userInput.from, userInput.to]
+    );
+
+    useEffect(() => {
+        const listener = event => {
+            if (event.code === "Enter" || event.code === "NumpadEnter") {
+                handleSearch();
+            }
+        };
+        document.addEventListener("keydown", listener);
+        return () => {
+            document.removeEventListener("keydown", listener);
+        };
+    }, [handleSearch]);
 
     return (
         <div className="p-12">
@@ -100,14 +116,19 @@ function Start(props) {
             </div>
             <Fab
                 className="w-full my-64"
-                disabled={!(userInput.from && userInput.to)}
+                disabled={!(userInput.from && userInput.to) || loading}
                 variant="extended"
                 color="primary"
                 aria-label="add"
                 onClick={handleSearch}
             >
-                <Search />
-                Search
+                {loading ? (
+                    <CircularProgress />
+                ) : (
+                    <span>
+                        <Search /> Search
+                    </span>
+                )}
             </Fab>
         </div>
     );

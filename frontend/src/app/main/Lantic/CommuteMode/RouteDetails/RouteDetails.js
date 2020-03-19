@@ -42,7 +42,7 @@ function RouteDetails(props) {
     );
 
     return (
-        <List className="bg-white pt-0 rounded-lg">
+        <List className="bg-white rounded-lg">
             <Option route={route} active={false} noBtn={1} />
             <FuseAnimateGroup
                 enter={{
