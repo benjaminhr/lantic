@@ -86,6 +86,7 @@ function Start(props) {
                     <OutlinedInput
                         id="from-field"
                         type="text"
+                        autoFocus
                         value={userInput.from}
                         className="w-full bg-white"
                         onChange={handleChange("from")}
