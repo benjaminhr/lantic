@@ -5,13 +5,15 @@ import RouteDetails from "app/main/Lantic/CommuteMode/RouteDetails/RouteDetails"
 import _ from "lodash";
 import Header from "../SharedComponents/Header/Header";
 import Option from "./Option/Option";
+import { useHistory } from "react-router-dom";
 
 function CommuteMode(props) {
-    const { option, setOption, setPage, to, from, routes, weatherInfo } = props;
+    const { option, setOption, to, from, routes, weatherInfo } = props;
     const [detail, setDetail] = React.useState(false);
+    const history = useHistory();
 
     const goToMap = () => {
-        setPage("map");
+        history.push("/map");
     };
 
     const goToDetails = () => {

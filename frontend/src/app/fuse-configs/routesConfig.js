@@ -1,17 +1,7 @@
 import React from "react";
-import FuseUtils from "@fuse/utils";
-import LanticConfigs from "app/main/Lantic/LanticConfigs";
-import { Redirect } from "react-router-dom";
-
-const routeConfigs = [...LanticConfigs];
+import BaseScreen from "app/main/Lantic/StartScreen/BaseScreen";
 
 const routes = [
-    ...FuseUtils.generateRoutesFromConfigs(routeConfigs),
-    {
-        path: "/",
-        exact: true,
-        component: () => <Redirect to="/home" />
-    },
     {
         settings: {
             layout: {
@@ -34,7 +24,8 @@ const routes = [
                 }
             }
         },
-        component: React.lazy(() => import("../main/Lantic/404/Error404Page"))
+        path: "/",
+        component: () => <BaseScreen />
     }
 ];
 

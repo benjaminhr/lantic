@@ -13,6 +13,7 @@ import {
 import { MyLocation, Search } from "@material-ui/icons";
 import React, { useCallback, useEffect } from "react";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 function Start(props) {
     // axios config
@@ -20,8 +21,9 @@ function Start(props) {
         process.env.NODE_ENV === "production" ? "http://our-site-url.com" : "http://127.0.0.1:5000";
     axios.defaults.headers["Content-Type"] = "application/x-www-form-urlencoded";
 
-    const { setRoutes, setPage, setOption, userInput, setUserInput } = props;
+    const { setRoutes, setOption, userInput, setUserInput } = props;
     const [loading, setLoading] = React.useState(false);
+    const history = useHistory();
 
     const handleChange = prop => event => {
         setUserInput({ ...userInput, [prop]: event.target.value });
@@ -50,14 +52,14 @@ function Start(props) {
                     // console.log(resp);
                     setLoading(false);
                     setRoutes(resp.data.routes);
-                    setPage("mode");
+                    history.push("/mode");
                 })
                 .catch(err => {
                     setLoading(false);
                     console.log(err.message);
                 });
         },
-        [setPage, setRoutes, userInput.from, userInput.to]
+        [history, setRoutes, userInput.from, userInput.to]
     );
 
     useEffect(() => {
