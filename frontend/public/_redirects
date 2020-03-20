@@ -1,5 +1,2 @@
-# redirect to primary domain
-https://projectxs.netlify.com/* https://projectxs.co.uk/:splat 301!
-
 # redirect all urls to index.html (for SPA)
 /* /index.html 200
