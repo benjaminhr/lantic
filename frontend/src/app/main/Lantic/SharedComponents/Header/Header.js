@@ -8,7 +8,7 @@ function Header(props) {
     const history = useHistory();
 
     const goBack = () => {
-        history.push(backLoc);
+        history.goBack();
     };
 
     return (
