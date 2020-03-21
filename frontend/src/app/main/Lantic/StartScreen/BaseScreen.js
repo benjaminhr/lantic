@@ -12,7 +12,7 @@ function BaseScreen() {
     }); // tracks user input values
     const [option, setOption] = React.useState(null); // which option was selected
     const [routes, setRoutes] = React.useState(null); // routes (ie Bus vs Walk)
-    const [weatherInfo, setWeatherInfo] = React.useState(); // for storing weather info globally
+    const [weatherInfo, setWeatherInfo] = React.useState(null); // for storing weather info globally
 
     return (
         <FusePageCarded
@@ -28,7 +28,6 @@ function BaseScreen() {
                                     routes,
                                     weatherInfo,
                                     setWeatherInfo,
-                                    backLoc: "home",
                                     ...userInput
                                 };
 
@@ -52,7 +51,7 @@ function BaseScreen() {
                             }}
                         />
                         <Route exact path="/" component={() => <Redirect to="/home" />} />
-                        <Route path="*" component={() => <Error404Page />} />
+                        <Route path="*" component={Error404Page} />
                     </Switch>
                 </Router>
             }

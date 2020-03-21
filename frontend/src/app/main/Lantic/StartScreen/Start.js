@@ -17,21 +17,15 @@ import { useHistory } from "react-router-dom";
 
 function Start(props) {
     // axios config
-    axios.defaults.baseURL =
-        process.env.NODE_ENV === "production" ? "http://our-site-url.com" : "http://127.0.0.1:5000";
-    axios.defaults.headers["Content-Type"] = "application/x-www-form-urlencoded";
+    axios.defaults.baseURL = "https://lantic-backend.herokuapp.com";
 
-    const { setRoutes, setOption, userInput, setUserInput } = props;
+    const { setRoutes, userInput, setUserInput } = props;
     const [loading, setLoading] = React.useState(false);
     const history = useHistory();
 
     const handleChange = prop => event => {
         setUserInput({ ...userInput, [prop]: event.target.value });
     };
-
-    useEffect(() => {
-        setOption(null);
-    }, [setOption]);
 
     const handleGetLocation = event => {
         event.preventDefault();
@@ -76,7 +70,7 @@ function Start(props) {
 
     return (
         <div className="p-12">
-            <Header className="min-h-64" />
+            <Header noBack className="min-h-64" />
             <Typography variant="h4" className="company_text font-bold text-center mt-48 mb-32">
                 Where are you going today?<Icon>cloud</Icon>
             </Typography>
@@ -99,7 +93,7 @@ function Start(props) {
                                 </IconButton>
                             </InputAdornment>
                         }
-                        labelWidth={70}
+                        labelWidth={40}
                     />
                 </FormControl>
 
@@ -113,7 +107,7 @@ function Start(props) {
                         value={userInput.to}
                         className="w-full bg-white"
                         onChange={handleChange("to")}
-                        labelWidth={70}
+                        labelWidth={40}
                     />
                 </FormControl>
             </div>

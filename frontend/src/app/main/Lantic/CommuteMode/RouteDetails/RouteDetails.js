@@ -4,11 +4,13 @@ import FuseAnimateGroup from "@fuse/core/FuseAnimateGroup";
 import { ListItem, ListItemAvatar, Avatar, ListItemText, List, CircularProgress } from "@material-ui/core";
 import axios from "axios";
 import Option from "app/main/Lantic/CommuteMode/Option/Option";
+import { useParams } from "react-router-dom";
 
 function RouteDetails(props) {
-    const { route, weatherInfo, setWeatherInfo } = props;
-    const { routes } = route;
-    const { steps } = routes[0];
+    const { routes, weatherInfo, setWeatherInfo } = props;
+    const { routeType } = useParams();
+    const route = routes.find(rt => rt.mode === routeType);
+    const { steps } = route.routes[0];
 
     useEffect(() => {
         Promise.all(
@@ -49,7 +51,7 @@ function RouteDetails(props) {
                 }}
             >
                 {!weatherInfo ? (
-                    <div className={"text-center"}>
+                    <div className="text-center">
                         <CircularProgress />
                     </div>
                 ) : (
@@ -65,15 +67,15 @@ function RouteDetails(props) {
                                     primary={<span dangerouslySetInnerHTML={{ __html: step.html_instructions }} />}
                                 />
                                 <ListItemAvatar>
-                                    <React.Fragment>
+                                    <>
                                         <Avatar style={{ color: "#435783", backgroundColor: "#BCD0DE" }}>
                                             <img src={step.weather.icon_url} alt="weather icon" />
                                         </Avatar>
                                         {step.weather.status_name}
-                                    </React.Fragment>
+                                    </>
                                 </ListItemAvatar>
                             </ListItem>
-                            {i < steps.length - 1 && seperatorDots(steps.length + i)}
+                            {i < weatherInfo.length - 1 && seperatorDots(weatherInfo.length + i)}
                         </React.Fragment>
                     ))
                 )}

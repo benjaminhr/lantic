@@ -3,21 +3,22 @@ import { List, Typography, Fab } from "@material-ui/core";
 import { KeyboardArrowRight } from "@material-ui/icons";
 import RouteDetails from "app/main/Lantic/CommuteMode/RouteDetails/RouteDetails";
 import _ from "lodash";
+import { Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
 import Header from "../SharedComponents/Header/Header";
 import Option from "./Option/Option";
-import { useHistory } from "react-router-dom";
 
 function CommuteMode(props) {
-    const { option, setOption, to, from, routes, weatherInfo } = props;
-    const [detail, setDetail] = React.useState(false);
+    const { option, setOption, to, from, routes, weatherInfo, location } = props;
+    const { path, url } = useRouteMatch();
     const history = useHistory();
+    const showingRouteDetails = location.pathname.split(path)[1] !== "";
 
     const goToMap = () => {
         history.push("/map");
     };
 
     const goToDetails = () => {
-        setDetail(true);
+        history.push(`${url}/${sortedRoutes[option].mode}`);
     };
 
     const optProps = {
@@ -52,28 +53,36 @@ function CommuteMode(props) {
                 {`${to}`}
             </Typography>
 
-            <div>
-                {detail && option != null ? (
-                    <RouteDetails route={sortedRoutes[option]} {...props} />
-                ) : (
-                    <List className="py-0 rounded-lg">
-                        {sortedRoutes.map((route, i) => (
-                            <Option {...optProps} route={route} active={option === i} id={i} key={i} />
-                        ))}
-                    </List>
-                )}
-            </div>
+            <Switch>
+                <Route
+                    exact
+                    path={path}
+                    render={ps => (
+                        <List className="py-0 rounded-lg">
+                            {sortedRoutes.map((route, i) => (
+                                <Option {...optProps} route={route} active={option === i} id={i} key={i} />
+                            ))}
+                        </List>
+                    )}
+                />
+                <Route
+                    path={`${path}/:routeType`}
+                    render={ps => {
+                        return <RouteDetails {...props} />;
+                    }}
+                />
+            </Switch>
 
             <Fab
                 className="w-full my-64"
                 variant="extended"
-                disabled={option === null || (detail && !weatherInfo)}
+                disabled={option === null || (showingRouteDetails && !weatherInfo)}
                 color="primary"
                 aria-label="add"
-                onClick={detail ? goToMap : goToDetails}
+                onClick={showingRouteDetails ? goToMap : goToDetails}
             >
-                {detail && <KeyboardArrowRight />}
-                {detail ? "Go" : "View"}
+                <KeyboardArrowRight />
+                {showingRouteDetails ? "Go" : "View"}
             </Fab>
         </div>
     );
