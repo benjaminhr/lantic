@@ -40,7 +40,9 @@ function Start(props) {
                     // console.log(resp);
                     setLoading(false);
                     setRoutes(resp.data.routes);
-                    history.push("/mode");
+                    if (resp.data.routes.length !== 0) {
+                        history.push("/mode"); // only proceed to mode, if routes were loaded
+                    } else console.log("No routes found");
                 })
                 .catch(err => {
                     setLoading(false);
@@ -52,7 +54,7 @@ function Start(props) {
 
     useEffect(() => {
         const listener = event => {
-            if (event.code === "Enter" || event.code === "NumpadEnter") {
+            if (form.from && form.to && (event.code === "Enter" || event.code === "NumpadEnter")) {
                 handleSearch();
             }
         };
@@ -60,7 +62,7 @@ function Start(props) {
         return () => {
             document.removeEventListener("keydown", listener);
         };
-    }, [handleSearch]);
+    }, [form, handleSearch]);
 
     return (
         <div className="p-12">

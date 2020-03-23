@@ -12,8 +12,8 @@ function BaseScreen() {
         to: ""
     }); // tracks user input values
     const [option, setOption] = React.useState(null); // which option was selected
-    const [routes, setRoutes] = React.useState(null); // routes (ie Bus vs Walk)
-    const [weatherInfo, setWeatherInfo] = React.useState(null); // for storing weather info globally
+    const [routes, setRoutes] = React.useState(null); // routes (ie Transit vs Driving)
+    const [weatherInfo, setWeatherInfo] = React.useState(null); // weather info
 
     return (
         <FusePageCarded
