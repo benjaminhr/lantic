@@ -2,11 +2,12 @@ import React from "react";
 import { BrowserRouter as Router, Redirect, Route, Switch } from "react-router-dom";
 import Error404Page from "app/main/Lantic/404/Error404Page";
 import FusePageCarded from "@fuse/core/FusePageCarded";
+import { useForm } from "@fuse/hooks";
 import Start from "./Start";
 import CommuteMode from "../CommuteMode/CommuteMode";
 
 function BaseScreen() {
-    const [userInput, setUserInput] = React.useState({
+    const { form, handleChange, setForm } = useForm({
         from: "",
         to: ""
     }); // tracks user input values
@@ -28,7 +29,7 @@ function BaseScreen() {
                                     routes,
                                     weatherInfo,
                                     setWeatherInfo,
-                                    ...userInput
+                                    ...form
                                 };
 
                                 return routes === null ? (
@@ -42,8 +43,9 @@ function BaseScreen() {
                             path="/home"
                             render={props => {
                                 const homeProps = {
-                                    userInput,
-                                    setUserInput,
+                                    form,
+                                    handleChange,
+                                    setForm,
                                     setRoutes,
                                     setOption
                                 };

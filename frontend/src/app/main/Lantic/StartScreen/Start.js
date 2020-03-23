@@ -14,26 +14,20 @@ import { MyLocation, Search } from "@material-ui/icons";
 import React, { useCallback, useEffect } from "react";
 import axios from "axios";
 import { useHistory } from "react-router-dom";
+import _ from "@lodash";
 
 function Start(props) {
     // axios config
     axios.defaults.baseURL = "https://lantic-backend.herokuapp.com";
 
-    const { setRoutes, userInput, setUserInput } = props;
+    const { setRoutes, handleChange, setForm, form } = props;
     const [loading, setLoading] = React.useState(false);
     const history = useHistory();
-
-    const handleChange = prop => event => {
-        setUserInput({ ...userInput, [prop]: event.target.value });
-    };
 
     const handleGetLocation = event => {
         event.preventDefault();
         setTimeout(() => {
-            setUserInput({
-                ...userInput,
-                from: "Queen Mary University of London"
-            });
+            setForm(_form => _.setIn({ ..._form }, "from", "Queen Mary University of London"));
         }, 250);
     };
 
@@ -41,7 +35,7 @@ function Start(props) {
         event => {
             setLoading(true);
             axios
-                .get(`/api/getRoutes?from=${userInput.from}&to=${userInput.to}`)
+                .get(`/api/getRoutes?from=${form.from}&to=${form.to}`)
                 .then(resp => {
                     // console.log(resp);
                     setLoading(false);
@@ -53,7 +47,7 @@ function Start(props) {
                     console.log(err.message);
                 });
         },
-        [history, setRoutes, userInput.from, userInput.to]
+        [form, setRoutes, history]
     );
 
     useEffect(() => {
@@ -83,9 +77,10 @@ function Start(props) {
                         id="from-field"
                         type="text"
                         autoFocus
-                        value={userInput.from}
+                        name="from"
+                        value={form.from}
                         className="w-full bg-white"
-                        onChange={handleChange("from")}
+                        onChange={handleChange}
                         endAdornment={
                             <InputAdornment position="end">
                                 <IconButton aria-label="get your location" onClick={handleGetLocation} edge="end">
@@ -104,16 +99,17 @@ function Start(props) {
                     <OutlinedInput
                         id="to-field"
                         type="text"
-                        value={userInput.to}
+                        name="to"
+                        value={form.to}
                         className="w-full bg-white"
-                        onChange={handleChange("to")}
+                        onChange={handleChange}
                         labelWidth={40}
                     />
                 </FormControl>
             </div>
             <Fab
                 className="w-full my-64"
-                disabled={!(userInput.from && userInput.to) || loading}
+                disabled={!(form.from && form.to) || loading}
                 variant="extended"
                 color="primary"
                 aria-label="add"
