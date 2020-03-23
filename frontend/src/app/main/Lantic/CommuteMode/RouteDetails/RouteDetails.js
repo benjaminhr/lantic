@@ -13,6 +13,7 @@ function RouteDetails(props) {
     const { steps } = route.routes[0];
 
     useEffect(() => {
+        setWeatherInfo(null);
         Promise.all(
             steps.map(
                 step =>
