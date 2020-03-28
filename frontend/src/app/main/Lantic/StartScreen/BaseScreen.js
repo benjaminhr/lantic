@@ -12,9 +12,13 @@ function BaseScreen() {
         from: "",
         to: ""
     }); // tracks user input values
-    const [option, setOption] = React.useState(null); // which option was selected
+    const [option, setOption] = React.useState({
+      index: 0,
+      mode: ""
+    }); // which option was selected
     const [routes, setRoutes] = React.useState(null); // routes (ie Transit vs Driving)
     const [weatherInfo, setWeatherInfo] = React.useState(null); // weather info
+
 
     return (
         <FusePageCarded
@@ -47,8 +51,7 @@ function BaseScreen() {
                                     form,
                                     handleChange,
                                     setForm,
-                                    setRoutes,
-                                    setOption
+                                    setRoutes
                                 };
                                 return <Start {...props} {...homeProps} />;
                             }}
@@ -56,7 +59,7 @@ function BaseScreen() {
                         <Route
                             path="/map"
                             render={props => {
-                                return <Map/>
+                                return <Map {...props} routes={routes} option={option}/>
                             }}
 
                         />

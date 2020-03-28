@@ -10,7 +10,10 @@ function Option(props) {
     const { route, setOption, active, id } = props;
     const { mode, duration } = route;
     const activate = () => {
-        setOption(id);
+        setOption({
+          index: id,
+          mode
+        });
     };
 
     const showButton = {

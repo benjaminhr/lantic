@@ -7,6 +7,8 @@ const mapStyle = {
 }
 
 function MapContainer(props){
+  console.log(props.option);
+
   return(
     <Map
       google={props.google}
@@ -21,5 +23,5 @@ function MapContainer(props){
 }
 
 export default GoogleApiWrapper({
-  apiKey: "AIzaSyCSeC2PBiu-WmuRC3XU8dQdt6_zor4x_vk"
+  apiKey: "AIzaSyBqGmTX94CtMwLDQvOk-VeVPoYIgkH_Yoc"
 })(MapContainer)

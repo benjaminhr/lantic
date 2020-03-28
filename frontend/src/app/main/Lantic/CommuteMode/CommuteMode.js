@@ -18,7 +18,7 @@ function CommuteMode(props) {
     };
 
     const goToDetails = () => {
-        history.push(`${url}/${sortedRoutes[option].mode}`);
+        history.push(`${url}/${sortedRoutes[option.index].mode}`);
     };
 
     const optProps = {
@@ -60,7 +60,12 @@ function CommuteMode(props) {
                     render={ps => (
                         <List className="py-0 rounded-lg">
                             {sortedRoutes.map((route, i) => (
-                                <Option {...optProps} route={route} active={option === i} id={i} key={i} />
+                                <Option
+                                  {...optProps}
+                                  route={route}
+                                  active={option === i}
+                                  id={i}
+                                  key={i} />
                             ))}
                         </List>
                     )}
