@@ -4,6 +4,7 @@ import Error404Page from "app/main/Lantic/404/Error404Page";
 import FusePageCarded from "@fuse/core/FusePageCarded";
 import { useForm } from "@fuse/hooks";
 import Start from "./Start";
+import Map from "../Map";
 import CommuteMode from "../CommuteMode/CommuteMode";
 
 function BaseScreen() {
@@ -52,6 +53,13 @@ function BaseScreen() {
                                 return <Start {...props} {...homeProps} />;
                             }}
                         />
+                        <Route
+                            path="/map"
+                            render={props => {
+                                return <Map/>
+                            }}
+
+                        />
                         <Route exact path="/" component={() => <Redirect to="/home" />} />
                         <Route path="*" component={Error404Page} />
                     </Switch>
@@ -62,3 +70,12 @@ function BaseScreen() {
 }
 
 export default BaseScreen;
+
+// const homeProps = {
+//     form,
+//     handleChange,
+//     setForm,
+//     setRoutes,
+//     setOption
+// };
+// return <Start {...props} {...homeProps} />;
