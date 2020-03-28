@@ -30,7 +30,7 @@ def get_routes():
         }
         return jsonify(error), 400
 
-    global response
+    global routes
     response = routes.get_routes(from_param, to_param)
 
     return jsonify(response)
