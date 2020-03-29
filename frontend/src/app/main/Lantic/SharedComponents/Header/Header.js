@@ -1,14 +1,12 @@
 import React from "react";
 import IconButton from "@material-ui/core/IconButton";
 import { Settings, KeyboardBackspace } from "@material-ui/icons";
-import { useHistory } from "react-router-dom";
 
 function Header(props) {
     const { noBack } = props;
-    const history = useHistory();
 
     const goBack = () => {
-        history.goBack();
+        props.history.goBack();
     };
 
     return (

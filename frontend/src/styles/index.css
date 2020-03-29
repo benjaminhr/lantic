@@ -122,7 +122,3 @@ input:-webkit-autofill {
 @import "prism.css";
 
 @import "tailwind.css";
-
-#fuse-layout > div > div > div > div > div > div.flex.container.w-full > div {
-  padding: 0!important;
-}

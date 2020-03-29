@@ -3,22 +3,21 @@ import { List, Typography, Fab } from "@material-ui/core";
 import { KeyboardArrowRight } from "@material-ui/icons";
 import RouteDetails from "app/main/Lantic/CommuteMode/RouteDetails/RouteDetails";
 import _ from "lodash";
-import { Route, Switch, useHistory, useRouteMatch } from "react-router-dom";
+import { Route, Switch, useRouteMatch } from "react-router-dom";
 import Header from "../SharedComponents/Header/Header";
 import Option from "./Option/Option";
 
 function CommuteMode(props) {
     const { option, setOption, to, from, routes, weatherInfo, location } = props;
     const { path, url } = useRouteMatch();
-    const history = useHistory();
     const showingRouteDetails = location.pathname.split(path)[1] !== "";
 
     const goToMap = () => {
-        history.push("/map");
+        props.history.push("/map");
     };
 
     const goToDetails = () => {
-        history.push(`${url}/${sortedRoutes[option.index].mode}`);
+        props.history.push(`${url}/${option.mode}`);
     };
 
     const optProps = {
@@ -60,7 +59,7 @@ function CommuteMode(props) {
                     render={ps => (
                         <List className="py-0 rounded-lg">
                             {sortedRoutes.map((route, i) => (
-                                <Option {...optProps} route={route} active={option === i} id={i} key={i} />
+                                <Option {...optProps} route={route} active={option.index === i} id={i} key={i} />
                             ))}
                         </List>
                     )}

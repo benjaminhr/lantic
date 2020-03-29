@@ -13,7 +13,7 @@ function BaseScreen() {
         to: ""
     }); // tracks user input values
     const [option, setOption] = React.useState({
-        index: 0,
+        index: "",
         mode: ""
     }); // which option was selected
     const [routes, setRoutes] = React.useState(null); // routes (ie Transit vs Driving)
@@ -76,12 +76,3 @@ function BaseScreen() {
 }
 
 export default BaseScreen;
-
-// const homeProps = {
-//     form,
-//     handleChange,
-//     setForm,
-//     setRoutes,
-//     setOption
-// };
-// return <Start {...props} {...homeProps} />;

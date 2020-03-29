@@ -13,7 +13,6 @@ import {
 import { MyLocation, Search } from "@material-ui/icons";
 import React, { useCallback, useEffect } from "react";
 import axios from "axios";
-import { useHistory } from "react-router-dom";
 import _ from "@lodash";
 
 function Start(props) {
@@ -22,7 +21,6 @@ function Start(props) {
 
     const { setRoutes, handleChange, setForm, form } = props;
     const [loading, setLoading] = React.useState(false);
-    const history = useHistory();
 
     const handleGetLocation = event => {
         event.preventDefault();
@@ -34,14 +32,15 @@ function Start(props) {
     const handleSearch = useCallback(
         event => {
             setLoading(true);
+            const { from, to } = form;
             axios
-                .get(`/api/getRoutes?from=${form.from}&to=${form.to}`)
+                .get(`/api/getRoutes?from=${from}&to=${to}`)
                 .then(resp => {
                     // console.log(resp);
                     setLoading(false);
                     setRoutes(resp.data.routes);
                     if (resp.data.routes.length !== 0) {
-                        history.push("/mode"); // only proceed to mode, if routes were loaded
+                        props.history.push("/mode"); // only proceed to mode, if routes were loaded
                     } else console.log("No routes found");
                 })
                 .catch(err => {
@@ -49,7 +48,7 @@ function Start(props) {
                     console.log(err.message);
                 });
         },
-        [form, setRoutes, history]
+        [form, props.history, setRoutes]
     );
 
     useEffect(() => {
