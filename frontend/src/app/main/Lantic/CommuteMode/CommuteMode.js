@@ -41,7 +41,7 @@ function CommuteMode(props) {
     ]);
 
     return (
-        <div className="p-12 h-full">
+        <div className="p-28 h-full">
             <Header className="min-h-64" {...props} />
             <Typography variant="h5" className="company_text font-bold text-left mt-48">
                 {`${from}`}
@@ -60,12 +60,7 @@ function CommuteMode(props) {
                     render={ps => (
                         <List className="py-0 rounded-lg">
                             {sortedRoutes.map((route, i) => (
-                                <Option
-                                  {...optProps}
-                                  route={route}
-                                  active={option === i}
-                                  id={i}
-                                  key={i} />
+                                <Option {...optProps} route={route} active={option === i} id={i} key={i} />
                             ))}
                         </List>
                     )}

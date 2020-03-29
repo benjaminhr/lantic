@@ -14,9 +14,9 @@ const backbuttonStyles = {
 }
 
 const defaultStartCords = {
-  lat: -1.2884,
-  lng: 36.8233
-}
+    lat: -1.2884,
+    lng: 36.8233
+};
 
 function MapContainer(props){
   const route = props.route

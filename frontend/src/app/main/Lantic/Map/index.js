@@ -1,3 +1,3 @@
-import Map from "./Map.js"
+import Map from "./Map";
 
-export default Map
+export default Map;

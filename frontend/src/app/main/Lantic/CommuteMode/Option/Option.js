@@ -11,8 +11,8 @@ function Option(props) {
     const { mode, duration } = route;
     const activate = () => {
         setOption({
-          index: id,
-          mode
+            index: id,
+            mode
         });
     };
 
