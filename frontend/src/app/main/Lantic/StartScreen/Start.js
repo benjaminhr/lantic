@@ -21,6 +21,7 @@ function Start(props) {
 
     const { setRoutes, handleChange, setForm, form } = props;
     const [loading, setLoading] = React.useState(false);
+    const [noRoutes, setNoRoutes] = React.useState(false);
 
     const handleGetLocation = event => {
         event.preventDefault();
@@ -32,6 +33,7 @@ function Start(props) {
     const handleSearch = useCallback(
         event => {
             setLoading(true);
+            setNoRoutes(false);
             const { from, to } = form;
             axios
                 .get(`/api/getRoutes?from=${from}&to=${to}`)
@@ -41,7 +43,9 @@ function Start(props) {
                     setRoutes(resp.data.routes);
                     if (resp.data.routes.length !== 0) {
                         props.history.push("/mode"); // only proceed to mode, if routes were loaded
-                    } else console.log("No routes found");
+                    } else {
+                        setNoRoutes(true);
+                    }
                 })
                 .catch(err => {
                     setLoading(false);
@@ -108,6 +112,11 @@ function Start(props) {
                     />
                 </FormControl>
             </div>
+            {noRoutes && (
+                <Typography className="text-red text-center font-bold -mb-32 mt-10">
+                    No routes found, please check your start and end locations are correctly spelled and try again
+                </Typography>
+            )}
             <Fab
                 className="w-full my-64"
                 disabled={!(form.from && form.to) || loading}
