@@ -6,17 +6,25 @@ const mapStyle = {
   height: '100%'
 }
 
-function MapContainer(props){
-  console.log(props.option);
+const defaultStartCords = {
+  lat: -1.2884,
+  lng: 36.8233
+}
 
+function MapContainer(props){
+  const route = props.route
+  const startLocation = (route && route.routes && route.routes[0].start_location) || defaultStartCords
+  console.log(startLocation);
+  console.log(props.map);
+  console.log(props.google.maps);
   return(
     <Map
       google={props.google}
       zoom={14}
       style={mapStyle}
       initialCenter={{
-        lat: -1.2884,
-        lng: 36.8233
+        lat: startLocation.lat,
+        lng: startLocation.lng
       }}
     />
   )

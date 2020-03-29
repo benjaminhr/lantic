@@ -59,7 +59,10 @@ function BaseScreen() {
                         <Route
                             path="/map"
                             render={props => {
-                                return <Map {...props} routes={routes} option={option}/>
+                                return <Map
+                                  {...props}
+                                  route={routes && routes.find(route => route.mode === option.mode)}
+                                />
                             }}
 
                         />
