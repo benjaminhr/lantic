@@ -41,7 +41,7 @@ function CommuteMode(props) {
     ]);
 
     return (
-        <div className="p-12 h-full">
+        <div className="p-28 h-full">
             <Header className="min-h-64" {...props} />
             <Typography variant="h5" className="company_text font-bold text-left mt-48">
                 {`${from}`}

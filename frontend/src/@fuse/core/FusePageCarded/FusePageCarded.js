@@ -35,14 +35,14 @@ const useStyles = makeStyles(theme => ({
     contentWrapper: {
         display: "flex",
         flexDirection: "column",
-        padding: "0 3.2rem",
+        // padding: "0 3.2rem",
         flex: "1 1 100%",
         zIndex: 2,
         maxWidth: "100%",
         minWidth: 0,
         minHeight: 0,
         [theme.breakpoints.down("xs")]: {
-            padding: "0 1.6rem"
+            // padding: "0 1.6rem"
         }
     },
     header: {

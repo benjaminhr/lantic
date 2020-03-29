@@ -65,7 +65,7 @@ function Start(props) {
     }, [form, handleSearch]);
 
     return (
-        <div className="p-12">
+        <div className="p-28">
             <Header noBack className="min-h-64" />
             <Typography variant="h4" className="company_text font-bold text-center mt-48 mb-32">
                 Where are you going today?<Icon>cloud</Icon>
