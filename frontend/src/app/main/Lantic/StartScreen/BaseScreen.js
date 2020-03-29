@@ -13,12 +13,11 @@ function BaseScreen() {
         to: ""
     }); // tracks user input values
     const [option, setOption] = React.useState({
-      index: 0,
-      mode: ""
+        index: 0,
+        mode: ""
     }); // which option was selected
     const [routes, setRoutes] = React.useState(null); // routes (ie Transit vs Driving)
     const [weatherInfo, setWeatherInfo] = React.useState(null); // weather info
-
 
     return (
         <FusePageCarded
@@ -59,12 +58,13 @@ function BaseScreen() {
                         <Route
                             path="/map"
                             render={props => {
-                                return <Map
-                                  {...props}
-                                  route={routes && routes.find(route => route.mode === option.mode)}
-                                />
+                                return (
+                                    <Map
+                                        {...props}
+                                        route={routes && routes.find(route => route.mode === option.mode)}
+                                    />
+                                );
                             }}
-
                         />
                         <Route exact path="/" component={() => <Redirect to="/home" />} />
                         <Route path="*" component={Error404Page} />
