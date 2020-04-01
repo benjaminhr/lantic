@@ -1,6 +1,7 @@
 # Lantic
 
 - View live @ [https://lantic.netlify.com/](https://lantic.netlify.com/)
+    - Set viewport to be iPhone X, in Chrome devtools it's the button on the top left corner
 
 - #### To get frontend up and running (locally):
 
