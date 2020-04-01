@@ -1,11 +1,10 @@
 # Lantic
 
-- View live @ [https://lantic.netlify.com/](https://lantic.netlify.com/)
-    - Set viewport to be iPhone X, in Chrome devtools it's the button on the top left corner
+- View live @ [https://lantic.netlify.com/](https://lantic.netlify.com/) on mobile device
+    - For desktop: set viewing device to be iPhone X, in Chrome devtools it's the button on the top left corner
 
 - #### To get frontend up and running (locally):
-
-    - you probably need node installed on your computer for any of this stuff to run
+    - Innstall `node`
     - install yarn on your pc/mac ([yarn](https://classic.yarnpkg.com/en/docs/install#windows-stable))
         - choose version 1.22.4 (cos yarn 2 may have issues with the code)
     - change into the frontend directory: `cd frontend`
