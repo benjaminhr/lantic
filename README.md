@@ -1,6 +1,6 @@
 # Lantic
 
-- View live @ `https://lantic.netlify.com/`
+- View live @ [https://lantic.netlify.com/](https://lantic.netlify.com/)
 
 - #### To get frontend up and running (locally):
 
