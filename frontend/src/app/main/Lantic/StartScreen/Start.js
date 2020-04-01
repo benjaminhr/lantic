@@ -22,11 +22,40 @@ function Start(props) {
     const { setRoutes, handleChange, setForm, form } = props;
     const [loading, setLoading] = React.useState(false);
 
-    const handleGetLocation = event => {
+    const handleGetLocation = (event) => {
         event.preventDefault();
-        setTimeout(() => {
-            setForm(_form => _.setIn({ ..._form }, "from", "Queen Mary University of London"));
-        }, 250);
+        const options = {
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        }
+
+        const success = async (position) => {
+            const { latitude, longitude, accuracy } = position.coords
+            console.log("Got with " + accuracy + " accuracy.")
+            console.log(latitude, longitude)
+
+            try {
+                const API_KEY = "AIzaSyAj6z05OfPgkWcU9s07SO-SzuxMfqyarjU"
+                const gMapsURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${API_KEY}`
+                const request = await fetch(gMapsURL)
+                const response = await request.json()
+                const address = (response && response.results.length && response.results[0].formatted_address) || ""
+                console.log("GEOLOCATION: ", address)
+
+                setForm(_form => _.setIn({ ..._form }, "from", address));
+            } catch(error) {
+                console.log("Error getting geolocation", error)
+                return
+            }
+        }
+
+        const error = (error) => {
+            console.error(error.message)
+            return
+        }
+        
+        navigator.geolocation.getCurrentPosition(success, error, options)
     };
 
     const handleSearch = useCallback(
