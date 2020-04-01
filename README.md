@@ -1,6 +1,8 @@
 # Lantic
 
-- #### To get frontend up and running:
+- View live @ `https://lantic.netlify.com/`
+
+- #### To get frontend up and running (locally):
 
     - you probably need node installed on your computer for any of this stuff to run
     - install yarn on your pc/mac ([yarn](https://classic.yarnpkg.com/en/docs/install#windows-stable))
@@ -13,7 +15,10 @@
         - The page will reload if you make edits.
         - You will also see any lint errors in the console.
 
-- #### To get backend up and running:
+- #### To get backend up and running (locally):
+  - Get a Google API key with permissions for Directions API
+  - Create `backend/.env` file with property `MAPS_API_KEY=X` where `X` is your API key
+  
   - change into the backend directory: `cd backend`
   - install virtual environment manager:
     - MacOs/Linux: `python3 -m pip install --user virtualenv`
