@@ -21,7 +21,7 @@ function Start(props) {
 
     const { setRoutes, handleChange, setForm, form } = props;
     const [loading, setLoading] = React.useState(false);
-    const [noRoutes, setNoRoutes] = React.useState(false);
+    const [gettingGeoLocation, setGettingGeoLocation] = React.useState(false)
 
     const handleGetLocation = (event) => {
         event.preventDefault();
@@ -30,6 +30,9 @@ function Start(props) {
             timeout: 5000,
             maximumAge: 0
         }
+
+        const icon = document.querySelectorAll(".MuiSvgIcon-root")[1]
+        icon.classList.add("pulsating-geolocation")
 
         const success = async (position) => {
             const { latitude, longitude, accuracy } = position.coords
@@ -41,9 +44,13 @@ function Start(props) {
                 const request = await fetch(gMapsURL)
                 const response = await request.json()
                 const address = (response && response.results.length && response.results[0].formatted_address) || ""
-                console.log("GEOLOCATION: ", address)
 
-                setForm(_form => _.setIn({ ..._form }, "from", address));
+                setForm(_form => _.setIn({ ..._form }, "from", address))
+                setGettingGeoLocation(false)
+                
+                setTimeout(() => {
+                    icon.classList.remove("pulsating-geolocation")
+                }, 1800)
             } catch(error) {
                 console.log("Error getting geolocation", error)
                 return
@@ -61,7 +68,6 @@ function Start(props) {
     const handleSearch = useCallback(
         event => {
             setLoading(true);
-            setNoRoutes(false);
             const { from, to } = form;
             axios
                 .get(`/api/getRoutes?from=${from}&to=${to}`)
@@ -71,9 +77,7 @@ function Start(props) {
                     setRoutes(resp.data.routes);
                     if (resp.data.routes.length !== 0) {
                         props.history.push("/mode"); // only proceed to mode, if routes were loaded
-                    } else {
-                        setNoRoutes(true);
-                    }
+                    } else console.log("No routes found");
                 })
                 .catch(err => {
                     setLoading(false);
@@ -99,7 +103,7 @@ function Start(props) {
         <div className="p-28">
             <Header noBack className="min-h-64" />
             <Typography variant="h4" className="company_text font-bold text-center mt-48 mb-32">
-                Where are you going today?<Icon>cloud</Icon>
+                Where are you going today? 
             </Typography>
             <div className="pt-32">
                 <FormControl variant="outlined" className="w-full">
@@ -140,11 +144,6 @@ function Start(props) {
                     />
                 </FormControl>
             </div>
-            {noRoutes && (
-                <Typography className="text-red text-center font-bold -mb-32 mt-10">
-                    No routes found, please check your start and end locations are correctly spelled and try again
-                </Typography>
-            )}
             <Fab
                 className="w-full my-64"
                 disabled={!(form.from && form.to) || loading}
