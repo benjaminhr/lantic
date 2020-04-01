@@ -58,12 +58,15 @@ function BaseScreen() {
                         <Route
                             path="/map"
                             render={props => {
-                                return (
-                                    <Map
-                                        {...props}
-                                        route={routes && routes.find(route => route.mode === option.mode)}
-                                    />
-                                );
+                                    return routes === null ? (
+                                        <Redirect to="/home" />
+                                    ) : (
+                                        <Map
+                                            {...props}
+                                            weather={weatherInfo}
+                                            route={routes && routes.find(route => route.mode === option.mode)}
+                                        />
+                                    );
                             }}
                         />
                         <Route exact path="/" component={() => <Redirect to="/home" />} />
