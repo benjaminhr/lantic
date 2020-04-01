@@ -19,7 +19,6 @@
 - #### To get backend up and running (locally):
   - Get a Google API key with permissions for Directions API
   - Create `backend/.env` file with property `MAPS_API_KEY=X` where `X` is your API key
-  
   - change into the backend directory: `cd backend`
   - install virtual environment manager:
     - MacOs/Linux: `python3 -m pip install --user virtualenv`
