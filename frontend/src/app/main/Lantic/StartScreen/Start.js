@@ -33,7 +33,6 @@ function Start(props) {
         const success = async (position) => {
             const { latitude, longitude, accuracy } = position.coords
             console.log("Got with " + accuracy + " accuracy.")
-            console.log(latitude, longitude)
 
             try {
                 const API_KEY = "AIzaSyAj6z05OfPgkWcU9s07SO-SzuxMfqyarjU"
