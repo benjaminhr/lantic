@@ -21,6 +21,7 @@ function Start(props) {
 
     const { setRoutes, handleChange, setForm, form } = props;
     const [loading, setLoading] = React.useState(false);
+    const [gettingGeoLocation, setGettingGeoLocation] = React.useState(false)
 
     const handleGetLocation = (event) => {
         event.preventDefault();
@@ -29,6 +30,9 @@ function Start(props) {
             timeout: 5000,
             maximumAge: 0
         }
+
+        const icon = document.querySelectorAll(".MuiSvgIcon-root")[1]
+        icon.classList.add("pulsating-geolocation")
 
         const success = async (position) => {
             const { latitude, longitude, accuracy } = position.coords
@@ -41,7 +45,12 @@ function Start(props) {
                 const response = await request.json()
                 const address = (response && response.results.length && response.results[0].formatted_address) || ""
 
-                setForm(_form => _.setIn({ ..._form }, "from", address));
+                setForm(_form => _.setIn({ ..._form }, "from", address))
+                setGettingGeoLocation(false)
+                
+                setTimeout(() => {
+                    icon.classList.remove("pulsating-geolocation")
+                }, 1800)
             } catch(error) {
                 console.log("Error getting geolocation", error)
                 return
