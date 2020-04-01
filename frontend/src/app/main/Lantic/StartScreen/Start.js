@@ -40,7 +40,6 @@ function Start(props) {
                 const request = await fetch(gMapsURL)
                 const response = await request.json()
                 const address = (response && response.results.length && response.results[0].formatted_address) || ""
-                console.log("GEOLOCATION: ", address)
 
                 setForm(_form => _.setIn({ ..._form }, "from", address));
             } catch(error) {
@@ -95,7 +94,7 @@ function Start(props) {
         <div className="p-28">
             <Header noBack className="min-h-64" />
             <Typography variant="h4" className="company_text font-bold text-center mt-48 mb-32">
-                Where are you going today?<Icon>cloud</Icon>
+                Where are you going today? 
             </Typography>
             <div className="pt-32">
                 <FormControl variant="outlined" className="w-full">

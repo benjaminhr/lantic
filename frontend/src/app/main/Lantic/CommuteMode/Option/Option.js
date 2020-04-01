@@ -24,7 +24,14 @@ function Option(props) {
     };
 
     return (
-        <ListItem className="py-0 mb-4 rounded-lg bg-white" {...showButton}>
+        <ListItem 
+            className="py-0 mb-4 rounded-lg bg-white" 
+            style={{ 
+                "padding": "7px 15px 7px 15px",
+                "marginBottom": "10px"
+            }}
+            {...showButton} 
+        >
             <ListItemAvatar>
                 <Avatar style={{ color: "#435783", backgroundColor: "#BCD0DE" }}>
                     {mode === "walking" && <DirectionsWalk />}

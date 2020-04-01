@@ -1,6 +1,6 @@
 import React from "react";
 import { List, Typography, Fab } from "@material-ui/core";
-import { KeyboardArrowRight } from "@material-ui/icons";
+import { KeyboardArrowRight, KeyboardBackspace } from "@material-ui/icons";
 import RouteDetails from "app/main/Lantic/CommuteMode/RouteDetails/RouteDetails";
 import _ from "lodash";
 import { Route, Switch, useRouteMatch } from "react-router-dom";
@@ -46,7 +46,7 @@ function CommuteMode(props) {
                 {`${from}`}
             </Typography>
             <Typography variant="h5" className="company_text font-bold text-left">
-                to
+                <KeyboardBackspace style={{ transform: "rotate(180deg)", opacity: "0.9" }} />
             </Typography>
             <Typography variant="h5" className="company_text font-bold text-left mb-32">
                 {`${to}`}
