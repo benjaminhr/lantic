@@ -29,5 +29,6 @@
     - MacOS/Linux: `source env/bin/activate`
     - Windows: `.\env\Scripts\activate`
   - install dependencies: `pip3 install -r requirements.txt`
+  - run app with: `python3 app.py`
   - in order to close the (activated) python3 environment: `deactivate`
   - if nothing works: [visit](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
