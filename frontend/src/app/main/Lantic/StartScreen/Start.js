@@ -21,48 +21,46 @@ function Start(props) {
 
     const { setRoutes, handleChange, setForm, form } = props;
     const [loading, setLoading] = React.useState(false);
-    const [gettingGeoLocation, setGettingGeoLocation] = React.useState(false)
+    const [gettingGeoLocation, setGettingGeoLocation] = React.useState(false);
 
-    const handleGetLocation = (event) => {
+    const handleGetLocation = event => {
         event.preventDefault();
         const options = {
             enableHighAccuracy: true,
             timeout: 5000,
             maximumAge: 0
-        }
+        };
 
-        const icon = document.querySelectorAll(".MuiSvgIcon-root")[1]
-        icon.classList.add("pulsating-geolocation")
+        const icon = document.querySelectorAll(".MuiSvgIcon-root")[1];
+        icon.classList.add("pulsating-geolocation");
 
-        const success = async (position) => {
-            const { latitude, longitude, accuracy } = position.coords
-            console.log("Got with " + accuracy + " accuracy.")
+        const success = async position => {
+            const { latitude, longitude, accuracy } = position.coords;
+            console.log(`Got with ${accuracy} accuracy.`);
 
             try {
-                const API_KEY = "AIzaSyAj6z05OfPgkWcU9s07SO-SzuxMfqyarjU"
-                const gMapsURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${API_KEY}`
-                const request = await fetch(gMapsURL)
-                const response = await request.json()
-                const address = (response && response.results.length && response.results[0].formatted_address) || ""
+                const API_KEY = "AIzaSyAj6z05OfPgkWcU9s07SO-SzuxMfqyarjU";
+                const gMapsURL = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${latitude},${longitude}&key=${API_KEY}`;
+                const request = await fetch(gMapsURL);
+                const response = await request.json();
+                const address = (response && response.results.length && response.results[0].formatted_address) || "";
 
-                setForm(_form => _.setIn({ ..._form }, "from", address))
-                setGettingGeoLocation(false)
-                
+                setForm(_form => _.setIn({ ..._form }, "from", address));
+                setGettingGeoLocation(false);
+
                 setTimeout(() => {
-                    icon.classList.remove("pulsating-geolocation")
-                }, 1800)
-            } catch(error) {
-                console.log("Error getting geolocation", error)
-                return
+                    icon.classList.remove("pulsating-geolocation");
+                }, 1800);
+            } catch (error) {
+                console.log("Error getting geolocation", error);
             }
-        }
+        };
 
-        const error = (error) => {
-            console.error(error.message)
-            return
-        }
-        
-        navigator.geolocation.getCurrentPosition(success, error, options)
+        const error = error => {
+            console.error(error.message);
+        };
+
+        navigator.geolocation.getCurrentPosition(success, error, options);
     };
 
     const handleSearch = useCallback(
@@ -103,7 +101,7 @@ function Start(props) {
         <div className="p-28">
             <Header noBack className="min-h-64" />
             <Typography variant="h4" className="company_text font-bold text-center mt-48 mb-32">
-                Where are you going today? 
+                Where are you going today?
             </Typography>
             <div className="pt-32">
                 <FormControl variant="outlined" className="w-full">

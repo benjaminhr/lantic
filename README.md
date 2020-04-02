@@ -1,8 +1,10 @@
 # Lantic
 
-- #### To get frontend up and running:
+- View live @ [https://lantic.netlify.com/](https://lantic.netlify.com/) on mobile device
+    - For desktop: set viewing device to be iPhone X, in Chrome devtools it's the button on the top left corner
 
-    - you probably need node installed on your computer for any of this stuff to run
+- #### To get frontend up and running (locally):
+    - Install `node`
     - install yarn on your pc/mac ([yarn](https://classic.yarnpkg.com/en/docs/install#windows-stable))
         - choose version 1.22.4 (cos yarn 2 may have issues with the code)
     - change into the frontend directory: `cd frontend`
@@ -13,7 +15,9 @@
         - The page will reload if you make edits.
         - You will also see any lint errors in the console.
 
-- #### To get backend up and running:
+- #### To get backend up and running (locally):
+  - Get a Google API key with permissions for Directions API
+  - Create `backend/.env` file with property `MAPS_API_KEY=X` where `X` is your API key
   - change into the backend directory: `cd backend`
   - install virtual environment manager:
     - MacOs/Linux: `python3 -m pip install --user virtualenv`
@@ -25,5 +29,6 @@
     - MacOS/Linux: `source env/bin/activate`
     - Windows: `.\env\Scripts\activate`
   - install dependencies: `pip3 install -r requirements.txt`
+  - run app with: `python3 app.py`
   - in order to close the (activated) python3 environment: `deactivate`
   - if nothing works: [visit](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/)
