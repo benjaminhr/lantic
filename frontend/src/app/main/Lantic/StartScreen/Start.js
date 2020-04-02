@@ -1,7 +1,6 @@
 import Header from "app/main/Lantic/SharedComponents/Header/Header";
 import {
     Fab,
-    Icon,
     Typography,
     FormControl,
     InputLabel,
@@ -21,7 +20,6 @@ function Start(props) {
 
     const { setRoutes, handleChange, setForm, form } = props;
     const [loading, setLoading] = React.useState(false);
-    const [gettingGeoLocation, setGettingGeoLocation] = React.useState(false);
 
     const handleGetLocation = event => {
         event.preventDefault();
@@ -46,7 +44,6 @@ function Start(props) {
                 const address = (response && response.results.length && response.results[0].formatted_address) || "";
 
                 setForm(_form => _.setIn({ ..._form }, "from", address));
-                setGettingGeoLocation(false);
 
                 setTimeout(() => {
                     icon.classList.remove("pulsating-geolocation");

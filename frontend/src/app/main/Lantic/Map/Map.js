@@ -23,6 +23,13 @@ const weatherButtonStyles = {
     transform: "translate(-50%, -50%)",
 }
 
+const mapStyles = {
+    position: "fixed",
+    top: "0",
+    height: "100vh", 
+    width: "100vw"
+}
+
 const defaultStartCords = {
     lat: -1.2884,
     lng: 36.8233
@@ -81,7 +88,7 @@ function MapContainer(props) {
     description = (description && description[0].toUpperCase() + description.slice(1)) || ""
 
     return (
-        <div style={{ height: "100vh", width: "100vw" }}>
+        <div style={mapStyles}>
             <IconButton aria-label="back" edge="start" onClick={goBack} style={backButtonStyles}>
                 <KeyboardBackspace />
             </IconButton>
