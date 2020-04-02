@@ -1,0 +1,40 @@
+Ashraff Hatz (180297535): 
+  - Built significant parts of the backend (core API, Google Maps routing, refactoring, testing)
+  - Built features in the frontend (Maps integration, CSS styling, refactoring, testing)
+  - Took own initiative to learn NodeJS and React
+  - Eager and willing to help out during all phases of development
+  - Excellent communication with group members
+
+Benjamin Robson (170140962): 
+  - Built deployment pipeline and development environment for the backend 
+    (Docker, docker-compose, Heroku, container registry)
+  - Setup GCloud console for API integrations (Directions, Geolocating, Embeded Maps)
+  - Created designs and helped materialize them in the frontend
+  - Aided team members in their learning of new tools and languages
+  - Eager and willing to help out during all phases of development
+  - Excellent communication with group members
+
+Daniel Samet (180916337):
+  - Absent for most of development cycle due to illness (excused)
+  - Helped with deployment pipeline in the backend (Docker)
+  - Helped write backend code and make sure it adheres to PIP standards 
+  - Helped architect the application and was tightly involved in design process
+
+Daniel Atewologun (180332788):
+  - Helped architect the application and was involved in design process
+  - Did not contribute to codebase
+
+Shmuel Margulies (180157376): 
+  - Built significant parts of the frontend 
+    (splash screen, home screen, routes UI, map, styling)
+  - Setup Netlify deployment for frontend
+  - Took significant initiative to learn tools and frameworks
+  - Eager and willing to help out during all phases of development
+  - Excellent communication with group members
+
+Augustas Tiknius (180437670): 
+  - Built weather API integration in the backend with comments
+  - All work done in timely manner and did not cause any bottlenecks
+  - Good communication with group members
+
+
