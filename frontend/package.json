@@ -16,7 +16,7 @@
         "axios-mock-adapter": "1.17.0",
         "chart.js": "2.9.3",
         "clsx": "1.1.0",
-        "cross-fetch": "3.0.4",
+        "cross-fetch": "3.1.5",
         "date-fns": "2.1.0",
         "downshift": "4.1.0",
         "firebase": "7.11.0",
