@@ -42,7 +42,7 @@
         "perfect-scrollbar": "1.5.0",
         "prismjs": "1.19.0",
         "prop-types": "15.7.2",
-        "qs": "6.9.1",
+        "qs": "6.9.7",
         "raw-loader": "4.0.0",
         "react": "16.13.0",
         "react-app-polyfill": "1.0.6",
